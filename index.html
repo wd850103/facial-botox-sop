@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面肌痉挛与 Meige 注射规范</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* 布局：左侧固定目录 + 右侧单栏正文；超声示意图为固定深色"监视器"面板，与主题无关 */
+:root{
+  --bg:#f4f7f7; --surface:#ffffff; --sunk:#e9eff0;
+  --fg:#14232a; --muted:#56676f; --line:#d3dde0;
+  --accent:#0d7480; --accent-soft:#d8eef0;
+  --danger:#b3392d; --danger-soft:#f7e2df;
+  --warn:#9a6200; --warn-soft:#f6ecd8;
+  --f-display:"Noto Serif SC","Songti SC","SimSun",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Consolas",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1416; --surface:#151e21; --sunk:#1b262a;
+  --fg:#e2eaec; --muted:#93a3a9; --line:#2a383d;
+  --accent:#4cc4cd; --accent-soft:#163538;
+  --danger:#ff8273; --danger-soft:#3a1f1c;
+  --warn:#e4ad4a; --warn-soft:#372b16;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0e1416; --surface:#151e21; --sunk:#1b262a;
+  --fg:#e2eaec; --muted:#93a3a9; --line:#2a383d;
+  --accent:#4cc4cd; --accent-soft:#163538;
+  --danger:#ff8273; --danger-soft:#3a1f1c;
+  --warn:#e4ad4a; --warn-soft:#372b16;
+  color-scheme:dark;}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.75}
+.wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.35;margin:0}
+h1{font-size:clamp(26px,3.4vw,36px);font-weight:700}
+h2{font-size:23px;font-weight:700;padding-top:8px}
+h3{font-size:17px;font-weight:600}
+p{margin:0;max-width:70ch}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:500}
+small,.sub{color:var(--muted)}
+
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13.5px}
+nav.toc .k{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:8px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:t}
+nav.toc a{display:flex;gap:8px;color:var(--fg);text-decoration:none;padding:5px 8px;border-radius:6px}
+nav.toc a::before{counter-increment:t;content:counter(t);font-family:var(--f-mono);color:var(--muted);min-width:1.4em}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--sunk);outline:none}
+
+main{min-width:0;display:grid;gap:56px}
+header.top{display:grid;gap:14px;padding-bottom:24px;border-bottom:2px solid var(--fg)}
+header.top .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:500}
+.disclaim{font-size:13px;color:var(--muted);max-width:none}
+
+section{display:grid;gap:18px;scroll-margin-top:24px}
+section > header{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+section > header .sn{font-family:var(--f-mono);color:var(--accent);font-size:14px}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;gap:8px;min-width:0}
+.box h3{font-size:15.5px}
+ul.li,ol.li{margin:0;padding-left:1.25em;display:grid;gap:4px}
+ul.li li::marker{color:var(--accent)}
+.callout{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 16px;border-radius:0 6px 6px 0;font-size:14px}
+.callout.dg{border-color:var(--danger);background:var(--danger-soft)}
+.callout b{font-weight:700}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.55}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+thead th{background:var(--sunk);font-weight:700;font-size:12.5px;white-space:nowrap;position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+td.n,th.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wide{min-width:980px}
+.mid{min-width:640px}
+td .tag{display:inline-block;font-size:11.5px;padding:0 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin:1px 4px 1px 0;white-space:nowrap}
+td .risk{color:var(--danger)}
+
+/* 选择器 */
+.sel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:start}
+.pat{display:grid;gap:6px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 10px;border-radius:6px;background:var(--surface);border:1px solid var(--line)}
+.prow .pn{font-weight:500}
+.prow .pe{font-size:12px;color:var(--muted);display:block;line-height:1.4}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{padding:3px 10px;font-size:13px;cursor:pointer;color:var(--muted);border-left:1px solid var(--line)}
+.seg label:first-of-type{border-left:none}
+.seg input:checked + label{background:var(--accent);color:var(--surface);font-weight:700}
+.seg input:focus-visible + label{outline:2px solid var(--accent);outline-offset:-2px}
+.out{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:grid;gap:12px}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.side{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.side h3{font-size:14px;margin-bottom:6px;display:flex;justify-content:space-between}
+.side ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13px;line-height:1.45}
+.side li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}
+.side li .src{grid-column:1/-1;font-size:11.5px;color:var(--muted)}
+.side .empty{color:var(--muted);font-size:13px}
+.total{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;background:var(--sunk);border-radius:8px;padding:10px 14px}
+.total .big{font-family:var(--f-mono);font-size:22px;font-variant-numeric:tabular-nums}
+.warns{display:grid;gap:6px}
+.warns .callout{font-size:13px;padding:8px 12px}
+button.btn{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:4px 12px;cursor:pointer}
+button.btn:hover{border-color:var(--accent)}
+button.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.btn[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+
+/* 超声图 */
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.lg{display:flex;gap:8px;align-items:center;font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+.lg svg{width:30px;height:20px;flex:none;border-radius:3px}
+.echo td:first-child{white-space:nowrap;font-weight:500}
+.fig{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start;padding-top:8px}
+.fig + .fig{border-top:1px dashed var(--line);padding-top:28px}
+.fig .svgbox{overflow-x:auto;min-width:0}
+.fig svg.us{width:100%;min-width:620px;display:block}
+.fig .cap{display:grid;gap:10px;font-size:13.5px;line-height:1.65;min-width:0}
+.fig .cap h3{display:flex;gap:10px;align-items:baseline}
+.fig .cap h3 .vid{font-family:var(--f-mono);color:var(--accent)}
+.fig dl{margin:0;display:grid;gap:8px}
+.fig dt{font-size:11.5px;letter-spacing:.1em;color:var(--muted);font-weight:700}
+.fig dd{margin:0}
+.fig dd.dg{color:var(--danger)}
+.u-base{fill:#1b1b1b}.u-skin{fill:#d6d6d6}.u-fat{fill:#383838}.u-lob{fill:url(#lob)}
+.u-m{fill:#262626;stroke:#a6a6a6;stroke-width:1.4}.u-fib{fill:url(#fib)}
+.u-thin{fill:none;stroke:#cacaca;stroke-width:2.2}
+.u-g{fill:#8a8a8a}
+.u-a{fill:#030303;stroke:#9c9c9c;stroke-width:1.6}.u-v{fill:#060606;stroke:#777;stroke-width:1.2}
+.doppler .u-a{fill:#d1392e}.doppler .u-v{fill:#2f63d4}
+.u-n{fill:#151515;stroke:#e4e4e4;stroke-width:1.6}.u-nf{fill:#8f8f8f}
+.u-bone{fill:none;stroke:#f6f6f6;stroke-width:4;stroke-linecap:round}.u-sh{fill:#020202;opacity:.93}
+.u-rev{fill:none;stroke:#b8b8b8;stroke-width:2}
+.u-eso{fill:#1f1f1f;stroke:#9a9a9a;stroke-width:5}.u-esoin{fill:#c2c2c2}
+.u-pl{fill:none;stroke:#f2f2f2;stroke-width:3}.u-aline{fill:none;stroke:#8d8d8d;stroke-width:2}
+.u-tg{fill:none;stroke:#46d7df;stroke-width:2;stroke-dasharray:6 4}
+.u-needle{stroke:#8af0a8;stroke-width:2.6;stroke-linecap:round}.u-tip{fill:#8af0a8}
+.u-scale text{fill:#c6c6c6;font-size:10px;font-family:var(--f-mono)}.u-scale line{stroke:#c6c6c6;stroke-width:1}
+.u-frame{fill:none;stroke:var(--line);stroke-width:1}
+.l-txt{fill:var(--fg);font-size:13px}.l-tg{fill:var(--accent);font-weight:700}.l-dg{fill:var(--danger);font-weight:600}.l-bn{fill:var(--muted)}
+.l-out{stroke:var(--muted);stroke-width:1}
+.l-in{stroke-width:1.1}.l-in.tg{stroke:#46d7df}.l-in.dg{stroke:#ff8b7b}.l-in.ot,.l-in.bn{stroke:#e8e8e8}
+.l-dot.tg{fill:#46d7df}.l-dot.dg{fill:#ff8b7b}.l-dot.ot,.l-dot.bn{fill:#e8e8e8}
+.o-txt{fill:var(--muted);font-size:12px}.o-probe{fill:var(--muted)}
+
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+ol.steps li::before{counter-increment:s;content:counter(s);font-family:var(--f-mono);font-size:15px;color:var(--accent);font-weight:500;border:1.5px solid var(--accent);border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+ol.steps b{font-weight:700}
+.rx{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.rx .box table{font-size:13px}
+.rx .box td,.rx .box th{padding:5px 6px}
+.rx .sum{display:flex;justify-content:space-between;border-top:1.5px solid var(--fg);padding-top:6px;font-weight:700}
+.refs{font-size:13px;color:var(--muted);display:grid;gap:6px;padding-left:1.4em;margin:0}
+.real{display:grid;gap:18px;min-width:0}
+.ph{margin:0;display:grid;gap:6px;min-width:0}
+.ph .pbox{overflow-x:auto;border-radius:6px;background:#000}
+.ph svg{display:block;width:100%;margin:0 auto}
+.ph svg text{font-family:var(--f-body);font-weight:700}
+.ph figcaption{font-size:12.5px;color:var(--muted);line-height:1.6}
+.ph figcaption b{color:var(--fg);font-weight:700}
+.ph .cr{font-size:11.5px;opacity:.9}
+.nolabel .ov{display:none}
+#s6{--ova:.95}
+.r,.rh{fill:none;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;transition:stroke-opacity .15s,stroke-width .15s}
+.r{stroke-width:2px;stroke-opacity:var(--ova);pointer-events:all;cursor:pointer}
+.rh{stroke:#000;stroke-width:4.5px;stroke-opacity:calc(var(--ova) * .55);pointer-events:none}
+.r-tg{stroke:#3ff0f7}.r-ot{stroke:#ffb43c}.r-a{stroke:#ff5145}.r-v{stroke:#5f93ff}.r-n{stroke:#ffe23a;stroke-dasharray:4 3}
+.r.r-b{stroke:#ffffff;stroke-width:3px}
+.ph.focus .r{stroke-opacity:.15}.ph.focus .rh{stroke-opacity:.08}
+.ph.focus .r.on{stroke-opacity:1;stroke-width:3.4px}.ph.focus .rh.on{stroke-opacity:.7;stroke-width:6.5px}
+.ph.focus .r.r-b.on{stroke:#ffe46b}
+.lab{cursor:pointer}.ph.focus .lab{opacity:.3}.ph.focus .lab.on{opacity:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:2px 10px;cursor:pointer;line-height:1.6}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);font-weight:700}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.dot.r-tg{background:#2fd3dc}.dot.r-ot{background:#f2b04f}.dot.r-a{background:#e2463a}.dot.r-v{background:#3c76e6}.dot.r-n{background:#f6d43a}.dot.r-b{background:transparent;border:2px solid var(--muted)}
+.rng{display:inline-flex;align-items:center;gap:8px;font-size:13px;border:1px solid var(--line);border-radius:6px;padding:3px 10px;background:var(--surface)}
+.rng input{width:120px;accent-color:var(--accent)}
+.rng output{font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}
+.okey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.okey span{display:inline-flex;align-items:center;gap:6px}
+details.schem{grid-column:1/-1;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:8px 14px}
+details.schem summary{cursor:pointer;font-size:13.5px;color:var(--accent);font-weight:500}
+details.schem .svgbox{padding-top:10px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px}
+.techfig{margin:0;display:grid;gap:6px}
+.techfig img{border-radius:6px;width:100%;max-width:760px;display:block}
+.techfig figcaption{font-size:12.5px;color:var(--muted)}
+
+@media (max-width: 960px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:24px}
+  nav.toc{position:static}
+  nav.toc ol{display:flex;flex-wrap:wrap;gap:4px}
+  nav.toc a{border:1px solid var(--line);padding:3px 10px}
+  .sel,.fig{grid-template-columns:minmax(0,1fr)}
+  .out{position:static}
+}
+@media (max-width: 520px){ .sides{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+
+/* 面部注射点图 */
+.facewrap{display:grid;gap:8px;min-width:0}
+.face{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px}
+.face svg{display:block;width:100%;max-width:420px;margin:0 auto}
+.fc-skin{fill:var(--sunk);stroke:var(--fg);stroke-width:1.5}
+.fc-ln{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-linecap:round}
+.fc-eye{fill:var(--surface);stroke:var(--fg);stroke-width:1.3}
+.fc-iris{fill:var(--muted)}
+.fc-m{fill:var(--accent);fill-opacity:.12;stroke:var(--accent);stroke-opacity:.35;stroke-width:1}
+.fc-ms{fill:none;stroke:var(--accent);stroke-opacity:.28;stroke-linecap:round}
+.fc-ring{fill:none;stroke:var(--accent);stroke-opacity:.16}
+.fc-side{fill:var(--muted);font-size:11px}
+.fc-mn{fill:var(--accent);font-size:9.5px;opacity:.85}
+.pt circle{fill:var(--surface);stroke:var(--muted);stroke-width:1.2}
+.pt text{font-family:var(--f-mono);font-size:8.5px;fill:var(--muted);text-anchor:middle;dominant-baseline:central}
+.pt.on circle{fill:var(--accent);stroke:var(--accent)}
+.pt.on text{fill:var(--surface);font-weight:700}
+.pt.hs.on circle{fill:var(--warn);stroke:var(--warn)}
+.pt.dim{opacity:.35}
+.pd{font-family:var(--f-mono);font-size:10.5px;font-weight:700;fill:var(--accent);paint-order:stroke;stroke:var(--surface);stroke-width:3px}
+.pd.hs{fill:var(--warn)}
+.cks{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+.cks label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.cks input{accent-color:var(--accent)}
+.prow select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);padding:2px 6px}
+.side li .ml{font-family:var(--f-mono);color:var(--muted);font-size:11.5px;margin-left:4px}
+.pno{display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:50%;background:var(--accent);color:var(--surface);font-family:var(--f-mono);font-size:10.5px;margin-right:6px;vertical-align:1px}
+.pno.hs{background:var(--warn)}
+.pno.o{background:transparent;color:var(--muted);border:1px solid var(--muted)}
+.mapsel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:20px;align-items:start}
+.rec td{height:30px}
+.rec input{width:100%;font:inherit;font-size:13px;border:none;border-bottom:1px dashed var(--line);background:transparent;color:var(--fg)}
+@media (max-width: 960px){ .mapsel{grid-template-columns:minmax(0,1fr)} }
+@media print{
+  nav.toc,.ctrl,.out .warns,details.schem{display:none}
+  .wrap{display:block}
+  body{background:#fff;color:#000;font-size:12px}
+  section{break-inside:auto}
+  .box,.tw,.side{break-inside:avoid}
+}
+.nolbl .lbl{display:none}
+.face4 svg{max-width:300px}
+
+.zone{fill:var(--danger);fill-opacity:.13;stroke:var(--danger);stroke-width:1.1;stroke-dasharray:3 2}
+.zkey{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--muted);line-height:1.6}
+.zkey b{color:var(--danger)}
+.zsw{flex:none;width:18px;height:12px;margin-top:4px;border:1.2px dashed var(--danger);background:var(--danger-soft);border-radius:3px}
+.prev{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.pv{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--danger);border-radius:8px;padding:14px 18px;display:grid;gap:8px;align-content:start;min-width:0;font-size:14px}
+.pv h3{display:flex;align-items:center;gap:10px;font-size:17px}
+.pv .pvn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--danger);color:var(--surface);font-family:var(--f-mono);font-size:13px}
+.pv .k{font-size:11.5px;letter-spacing:.1em;color:var(--danger);font-weight:700;margin-top:2px}
+.pv p{max-width:none}
+
+.dual{display:grid;gap:4px;justify-items:end}
+.dual > span{display:inline-flex;align-items:center;gap:6px}
+.dual .sl{font-size:12px;color:var(--muted);font-weight:700}
+
+/* 病种切换 */
+body[data-dz="hfs"] .only-meige{display:none !important}
+body[data-dz="meige"] .only-hfs{display:none !important}
+.dzbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:10px 14px}
+.dzbar .pn{font-weight:700;color:var(--accent)}
+.dzbar .sub{font-size:12.5px;flex:1 1 260px}
+.dzbar.in{background:var(--surface);border-color:var(--line)}
+.tagm{display:inline-block;font-size:12.5px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tg2{display:inline-block;font-size:11px;padding:0 6px;border-radius:4px;font-weight:700;vertical-align:1px;white-space:nowrap}
+.tg2.hfs{background:var(--accent-soft);color:var(--accent)}
+.tg2.meige{background:var(--warn-soft);color:var(--warn)}
+.tg2.both{background:var(--sunk);color:var(--muted)}
+.ptt tr.na td{opacity:.42}
+.ptt td.cur{background:var(--accent-soft)}
+.ptt .na-x{color:var(--muted)}
+.mk{display:inline-block;width:1.3em;font-weight:700}
+.mk.y{color:var(--accent)}.mk.o{color:var(--warn)}.mk.x{color:var(--danger)}.mk.n{color:var(--muted)}
+tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--muted)}
+.fc-deep{fill:none;stroke:var(--accent);stroke-opacity:.6;stroke-width:1.2;stroke-dasharray:3 2}
+
+.face4 svg{max-width:360px}
+.out .zkey{font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="目录">
+  <div class="k">目录</div>
+  <ol>
+    <li><a href="#s1">诊断与术前评估</a></li>
+    <li><a href="#s2">药物与配制</a></li>
+    <li><a href="#s3">剂量原则</a></li>
+    <li><a href="#s4">选肌、点位与剂量</a></li>
+    <li><a href="#s5">靶肌识别</a></li>
+    <li><a href="#s6">操作流程</a></li>
+    <li><a href="#s7">处方模板</a></li>
+    <li><a href="#s8">不良反应与随访</a></li>
+    <li><a href="#s9">记录表与参考文献</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <div class="eyebrow">标准操作方案 · SOP</div>
+  <h1>面肌痉挛与 Meige 综合征 A 型肉毒毒素注射标准方案</h1>
+  <div class="meta">
+    <span>版本 <b>V1.0</b></span>
+    <span>制定日期 <b class="num">2026-10-30</b></span>
+    <span>适用 <b>成人面肌痉挛（单侧、双侧）· Meige 综合征（眼睑痉挛 + 口下颌肌张力障碍）</b></span>
+    <span>剂量单位 <b>保妥适 / 衡力 U</b></span>
+  </div>
+  <div class="dzbar"><span class="pn">选择病种</span><span class="dzsw" data-k="top"></span><span class="sub">切换后，诊断要点、剂量原则、选肌助手、处方模板和记录表随之切换；第 4 节的剂量对照表和第 5 节的靶肌表两种病并列。</span></div>
+  <p class="disclaim"><b>免责声明：</b>本方案仅供经过肉毒毒素注射培训的专业医师学习与参考，不构成对任何具体患者的诊疗建议。剂量为文献与专家共识常用范围，实际用量须结合药品说明书、症状分布、既往疗效与不良反应个体化确定。面部注射点位图为示意图，实际点位以动作测试和触诊为准。</p>
+</header>
+
+<!-- 1 -->
+<section id="s1">
+  <header><span class="sn">01</span><h2>诊断要点、鉴别与术前评估</h2></header>
+  <div class="cols">
+    <div class="box only-hfs">
+      <h3>诊断要点（面肌痉挛）</h3>
+      <ul class="li">
+        <li><b>单侧</b>面神经支配肌群不自主、阵发性、<b>同步</b>收缩，紧张、疲劳、说话时加重，睡眠中可持续。</li>
+        <li>典型者<b>始于下睑眼轮匝肌</b>，数月至数年内逐渐扩展到上睑、颊部、口角，严重者累及颈阔肌。</li>
+        <li><b>"对侧 Babinski 征"</b>（other Babinski sign）：眼轮匝肌收缩闭眼时同侧眉毛反而上抬（额肌同时收缩），对面肌痉挛有较高特异性。</li>
+        <li><b>双侧面肌痉挛</b>罕见：两侧多先后起病（间隔数月至数年），<b>两侧抽动不同步</b>、轻重不同，每一侧仍有单侧面肌痉挛的特征；MRI 需评估双侧面神经根出脑区。</li>
+        <li>病因多为桥小脑角区<b>血管压迫面神经根出脑区</b>（小脑前下动脉、小脑后下动脉、椎动脉）；少数继发于肿瘤、血管畸形、面瘫后。</li>
+      </ul>
+    </div>
+    <div class="box only-meige">
+      <h3>诊断要点（Meige 综合征）</h3>
+      <ul class="li">
+        <li><b>眼睑痉挛</b>：双侧眼轮匝肌<b>同步</b>不自主收缩，瞬目增多、睁眼困难，强光、疲劳、注视时加重；常有"感觉诡计"（触摸眉部、说话、哼唱时减轻）。</li>
+        <li><b>口下颌肌张力障碍</b>分型：<b>闭口型</b>（咬肌、颞肌：牙关紧闭、磨牙）、<b>张口型</b>（翼外肌、二腹肌前腹：不自主张口）、<b>偏颌型</b>（对侧翼外肌）、<b>口周型</b>（口轮匝肌、降口角肌、颏肌、颈阔肌）、<b>舌型</b>（伸舌）。</li>
+        <li>可合并颈部、喉部肌张力障碍（颅颈节段性肌张力障碍），颈部注射参照斜颈方案。</li>
+        <li>可伴<b>眼睑开启失用</b>：没有明显痉挛但睁眼困难，睑板前眼轮匝肌持续收缩。</li>
+      </ul>
+    </div>
+    <div class="box only-meige">
+      <h3>术前评估（Meige 综合征）</h3>
+      <ul class="li">
+        <li><b>排除继发性</b>：抗精神病药、甲氧氯普胺等引起的迟发性运动障碍；年轻起病者筛查 Wilson 病；必要时头颅 MRI。</li>
+        <li><b>评分</b>：眼部用 JRS（见下表）；口下颌部记录咀嚼、说话、吞咽受影响程度，可用 OMDQ-25 等量表。</li>
+        <li><b>视频记录</b>：自然状态、说话、咀嚼、张口与闭口、前伸下颌、伸舌、饮水。</li>
+        <li><b>口腔与吞咽</b>：牙列、义齿、颞下颌关节；注射口下颌肌前做饮水试验，记录基线吞咽功能。</li>
+        <li>需注射翼外肌者，提前准备<b>肌电图（或超声）引导</b>设备。</li>
+      </ul>
+    </div>
+    <div class="box only-hfs">
+      <h3>术前评估（面肌痉挛）</h3>
+      <ul class="li">
+        <li><b>头颅 MRI</b>：3D-TOF MRA + 高分辨 3D T2（CISS / FIESTA）评估责任血管，排除桥小脑角肿瘤、血管畸形、Chiari 畸形。</li>
+        <li><b>评分</b>：Jankovic 评分（严重度 0–4 + 频率 0–4，见下表）；生活质量 HFS-7 或 HFS-30。</li>
+        <li><b>视频记录</b>：静息 1 分钟、轻闭眼、用力闭眼、快速眨眼、示齿、鼓腮、噘嘴、紧颈。</li>
+        <li><b>眼部</b>：上睑位置（MRD1）、提上睑肌功能、闭眼是否完全、干眼症状与角膜情况。</li>
+        <li><b>病史</b>：既往面瘫、微血管减压术（MVD）、既往注射的药品、剂量、点位、疗效持续时间与不良反应。</li>
+        <li>肌电图 <b>异常肌反应（AMR / LSR）</b>可辅助诊断，非必需。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>禁忌证与慎用</h3>
+      <ul class="li">
+        <li><b>禁忌</b>：对制剂成分过敏；注射部位感染；妊娠、哺乳期。</li>
+        <li><b>慎用</b>：重症肌无力、Lambert-Eaton 综合征、运动神经元病；同时使用氨基糖苷类抗生素；凝血功能障碍或抗凝治疗（增加眼周淤青）。</li>
+        <li><b>眼部慎用</b>：已有明显上睑下垂、兔眼（闭眼不全）、严重干眼或角膜病变者，眼周剂量减量并请眼科会诊。</li>
+        <li>面瘫后联动（继发性）患者面部对药物更敏感，起始剂量减少 25%–50%。</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>鉴别诊断</h3>
+  <div class="tw"><table class="mid">
+    <thead><tr><th>疾病</th><th>与面肌痉挛的区别</th></tr></thead>
+    <tbody>
+      <tr><td>眼睑痉挛 / Meige 综合征</td><td><b>双侧同步</b>、对称的眼轮匝肌痉挛，可合并口下颌肌张力障碍；有"感觉诡计"。与<b>双侧面肌痉挛</b>的区别：后者两侧<b>不同步</b>、各自累及同侧下面部，常有"对侧 Babinski 征"</td></tr>
+      <tr><td>面肌纤维颤搐</td><td>肌肉表面波浪样、蠕动样细小颤动，持续存在；需排查多发性硬化、脑干肿瘤</td></tr>
+      <tr><td>面瘫后联动</td><td>有周围性面瘫病史；抽动<b>由随意运动诱发</b>（如说话、微笑时眼裂变小），而非自发阵发</td></tr>
+      <tr><td>抽动障碍</td><td>可短暂主动抑制，发作前有"先兆冲动"，部位可变换，多起病于儿童期</td></tr>
+      <tr><td>功能性（心因性）面肌痉挛</td><td>常见口角向<b>下外</b>牵拉、表现多变、注意力分散后减轻，常无"对侧 Babinski 征"</td></tr>
+      <tr><td>偏侧咀嚼肌痉挛</td><td>咬肌、颞肌（三叉神经支配）抽动，表现为咬牙、下颌抽动，<b>不属于</b>面神经支配范围</td></tr>
+      <tr><td>局灶性运动性癫痫</td><td>可伴肢体抽动或意识改变，脑电图异常</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Jankovic 评分（JRS）</h3>
+  <div class="tw"><table class="mid">
+    <thead><tr><th class="n">分值</th><th>严重度</th><th>频率</th></tr></thead>
+    <tbody>
+      <tr><td class="n">0</td><td>无</td><td>无</td></tr>
+      <tr><td class="n">1</td><td>仅外界刺激时眨眼增多</td><td>眨眼频率轻度增加</td></tr>
+      <tr><td class="n">2</td><td>轻度，可见颤动，不影响功能</td><td>眼睑颤动，每次持续 &lt; 1 秒</td></tr>
+      <tr><td class="n">3</td><td>中度，痉挛明显，轻度影响功能</td><td>痉挛持续 &gt; 1 秒，但清醒时睁眼时间 &gt; 50%</td></tr>
+      <tr><td class="n">4</td><td>重度，影响阅读、驾驶等日常活动</td><td>清醒时 &gt; 50% 时间因痉挛闭眼，功能性"失明"</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout only-meige"><b>治疗选择：</b>肉毒毒素是眼睑痉挛和口下颌肌张力障碍的首选治疗。口服药物（苯海索、氯硝西泮、巴氯芬等）可作辅助；难治者可评估苍白球内侧部脑深部电刺激（GPi-DBS）。</div>
+  <div class="callout only-hfs"><b>治疗选择：</b>肉毒毒素是面肌痉挛的一线对症治疗，有效率高、可反复使用。药物疗效不满意、不能耐受反复注射或希望根治者，可转神经外科评估<b>微血管减压术（MVD）</b>。口服药物（卡马西平、氯硝西泮等）疗效有限，仅作辅助。</div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <header><span class="sn">02</span><h2>药物与配制</h2></header>
+  <div class="cols">
+    <div class="box">
+      <h3>药品与单位换算</h3>
+      <ul class="li">
+        <li>本方案剂量以<b>保妥适（onabotulinumtoxinA）/ 衡力</b>单位（U）表示，两者临床常按 1:1 使用。</li>
+        <li><b>吉适（Dysport）</b>约为本方案剂量的 2.5–3 倍；眼周部位部分中心按 3–4 倍换算。</li>
+        <li><b>西马（Xeomin）</b>约 1:1。</li>
+        <li>不同制剂单位不可直接互换；换药时首次按换算下限给药并密切随访。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>器械</h3>
+      <ul class="li">
+        <li>1 mL 注射器（0.01 mL 刻度），或带刻度的胰岛素注射器。</li>
+        <li>30G–32G 针头，长 4–13 mm；眼周用 4–6 mm 短针更安全。</li>
+        <li>冰袋、无菌棉签、人工泪液。</li>
+      </ul>
+    </div>
+  </div>
+  <h3>稀释表</h3>
+  <div class="tw"><table class="mid">
+    <thead><tr><th>规格 + 生理盐水</th><th class="n">浓度</th><th class="n">1.25 U</th><th class="n">2.5 U</th><th class="n">5 U</th><th>建议</th></tr></thead>
+    <tbody>
+      <tr><td>100 U + 4 mL（或 50 U + 2 mL）</td><td class="n">2.5 U / 0.1 mL</td><td class="n">0.05 mL</td><td class="n">0.10 mL</td><td class="n">0.20 mL</td><td><span class="tag">推荐</span>面部常用，小剂量易精确抽取</td></tr>
+      <tr><td>100 U + 2 mL（或 50 U + 1 mL）</td><td class="n">5 U / 0.1 mL</td><td class="n">0.025 mL</td><td class="n">0.05 mL</td><td class="n">0.10 mL</td><td>体积小、弥散少，适合眼周；1.25 U 难以精确抽取</td></tr>
+      <tr><td>100 U + 8 mL</td><td class="n">1.25 U / 0.1 mL</td><td class="n">0.10 mL</td><td class="n">0.20 mL</td><td class="n">0.40 mL</td><td class="risk">不推荐用于眼周（体积大、易弥散致上睑下垂）</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub">配制：沿瓶壁缓慢注入生理盐水，轻轻旋转混匀，勿剧烈振荡。配制后 2–8 ℃ 保存，按说明书规定时间内用完。同一患者眼周与下面部可使用同一浓度，以免记录混乱。</p>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <header><span class="sn">03</span><h2>剂量原则</h2></header>
+  <div class="cols only-hfs">
+    <div class="box">
+      <h3>总量</h3>
+      <ul class="li">
+        <li><b>首次</b>：仅眼周约 10 U；眼周 + 下面部 15–20 U。</li>
+        <li><b>维持</b>：常用 15–30 U / 次；长期随访研究的平均剂量为 22–27 U / 次。</li>
+        <li><b>上限</b>：单侧单次一般不超过 40–50 U。</li>
+        <li>面肌痉挛所需剂量明显<b>低于眼睑痉挛</b>（单侧、肌肉小）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>单点剂量</h3>
+      <ul class="li">
+        <li>眼轮匝肌睑板前：<b>1.25–2.5 U</b>（最多 5 U）。</li>
+        <li>眼轮匝肌眶部、额肌、皱眉肌：<b>2.5 U</b>（最多 5 U）。</li>
+        <li>颧大肌、颧小肌、笑肌、降口角肌：<b>1.25–2.5 U</b>，从 1.25 U 起。</li>
+        <li>口轮匝肌：<b>≤ 1.25 U</b>。</li>
+        <li>颏肌、颈阔肌：<b>2.5 U</b>（最多 5 U）。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>部位与证据</h3>
+      <ul class="li">
+        <li><b>睑板前注射优于眶隔前</b>：有效率更高、维持更久、上睑下垂更少（AAO 2018）。</li>
+        <li><b>下面部不是必注部位</b>：随机交叉试验显示单纯眼周注射疗效不劣于"眼周 + 下面部"，且总剂量更少，口角下垂仅见于下面部注射组（2025）。下面部只在抽动明显、影响功能或外观时注射。</li>
+        <li>长期治疗后药物可对<b>健侧</b>面肌产生轻度影响（电生理证据），健侧对称注射需谨慎、小剂量。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cols only-meige">
+    <div class="box">
+      <h3>眼部（眼睑痉挛，双侧对称）</h3>
+      <ul class="li">
+        <li>每侧 4–6 点：上睑内、外，下睑外，外眦；必要时加眉外侧、下睑内侧；另加皱眉肌和降眉间肌（中线）。</li>
+        <li><b>首次每点 1.25–2.5 U</b>（说明书剂量），每侧约 10–15 U；复治按疗效逐步加量，每点一般不超过 5 U（每点超过 10 U 通常不再增效）。</li>
+        <li>文献常用起始剂量：眼轮匝肌每眼 20–25 U，皱眉肌 10 U，降眉间肌 5 U（Hassell 2020，表 2）。</li>
+        <li><b>额肌一般不注射</b>：患者常靠额肌抬眉辅助睁眼；仅额肌本身明显痉挛时慎重小剂量注射。</li>
+        <li>睑板前注射优于眶隔前；合并眼睑开启失用者，睑板前近睑缘的点更有效。</li>
+        <li>保妥适说明书：眼睑痉挛 <b>30 天内累积剂量不超过 200 U</b>。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>口下颌部（每侧剂量）</h3>
+      <ul class="li">
+        <li><b>闭口型</b>：咬肌（首选）25–50 U，分 2–3 点；± 颞肌 15–40 U，分 2–3 点；翼内肌 ≤ 20 U，少用（肌电图引导）。</li>
+        <li><b>张口型</b>：翼外肌 10–20 U（<b>肌电图引导</b>）；疗效不足再加二腹肌前腹 2.5–5 U。</li>
+        <li><b>偏颌型</b>：下颌偏向一侧时，注射<b>对侧</b>翼外肌 + <b>同侧</b>颞肌。</li>
+        <li><b>口周型</b>：降口角肌、颏肌 1.25–5 U；口轮匝肌每点 ≤ 1.25 U（文献无统一剂量，为经验剂量）。</li>
+        <li><b>舌型</b>：颏舌肌文献起始每侧 10 U，须肌电图引导经颌下入路，吞咽困难风险高，本方案不常规推荐。</li>
+        <li>以上范围的上限即 Hassell 2020 表 2 的常用起始剂量；与眼部同次注射或首次治疗时取下限。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>总量与安全</h3>
+      <ul class="li">
+        <li>首次总量（眼部 + 口下颌）一般控制在 <b>100–150 U</b> 以内，两侧对称；2 周评估后再调整。单次超过 200 U 少见；眼睑痉挛 30 天内累积不超过 200 U（保妥适说明书）。</li>
+        <li>眼部和口下颌部<b>可以同次注射</b>，这是 Meige 综合征的常规做法。</li>
+        <li>合并颈部肌张力障碍、需同时注射胸锁乳突肌等时，吞咽困难风险叠加，控制总量或分次注射。</li>
+        <li>吞咽困难多见于张口肌群、颏下和舌肌注射；咀嚼无力多见于咬肌、颞肌剂量偏大。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box only-hfs">
+    <h3>双侧面肌痉挛的剂量原则</h3>
+    <ul class="li">
+      <li><b>两侧分别评估、分别给药</b>：按各自的受累部位和程度选点定量，不是把单侧方案简单乘以 2。</li>
+      <li><b>眼周可两侧同次注射</b>，首次两侧均用低剂量（上睑内侧 1.25 U 起），注意双眼角膜保护。</li>
+      <li><b>下面部不要两侧同时大剂量</b>：两侧口角、颧肌、口轮匝肌同时无力会影响进食、饮水、说话并致流涎。首次下面部只处理较重一侧，另一侧 2 周评估后再定；两侧口轮匝肌不同次注射。</li>
+      <li>总量：每侧仍按单侧上限（约 40–50 U），双侧合计一般不超过约 80 U。</li>
+      <li>健侧对称注射不适用于双侧发病。两侧疗效、不良反应和维持时间分别记录。</li>
+    </ul>
+  </div>
+  <div class="callout"><b>调整规则：</b>注射后 2 周评估。疗效不足者下次相应部位增加 25%–50%（不超过单点上限）；出现不良反应的部位下次减量 25%–50% 或调整点位。<b>两次注射间隔 ≥ 12 周</b>，原则上不做 2 周内补注（增加抗体产生风险，且难以判断剂量效应）。</div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <header><span class="sn">04</span><h2>选肌、点位与剂量</h2></header>
+  <div class="dzbar in"><span class="pn">病种</span><span class="dzsw" data-k="s4"></span></div>
+  <p>点位图为患者正面观（图的右侧 = 患者左侧）：<b>亮色点</b>为本次方案的注射点并标出剂量，<b>灰色点</b>为该病种的其他候选点，红色虚线区为禁注 / 慎注区。面肌痉挛先选患侧（左、右或双侧），再按抽动分布逐项选择受累程度；双侧发病时左右分别选择、分别计算。右侧自动生成注射点、单点剂量、抽取体积与总量，面部图上同步标出点位。<b>轻</b> = 偶见、不影响功能；<b>明显</b> = 频繁、可见牵拉或影响功能。结果为起始建议，最终剂量由注射医师决定。</p>
+  <div class="sel">
+    <div class="pat" id="pat"></div>
+    <div class="out">
+      <div style="display:grid;gap:12px;min-width:0">
+        <div class="face face4" id="face4"></div>
+        <div class="zkey"><span class="zsw"></span><span><b>红色虚线区 = 禁注 / 慎注区</b>：上睑中央（防上睑下垂）；内眦与下睑内侧深层（防复视、溢泪、青紫）；眉上 2 cm 以内（防眉下垂）；瞳孔中线内侧中面部（防鼻唇沟不对称）。<span class="only-meige">Meige 综合征另将<b>额肌</b>整体列为慎注区（睁眼依赖额肌）。</span>翼外肌为深部肌肉，以虚线圈表示，须引导下注射。</span></div>
+        <div style="display:grid;gap:12px;min-width:0">
+          <div class="sides">
+            <div class="side"><h3><span id="tA">患侧</span><span class="num" id="sumA"></span></h3><ul id="listA"></ul></div>
+            <div class="side"><h3><span id="tB">健侧（可选）</span><span class="num" id="sumB"></span></h3><ul id="listB"></ul></div>
+          </div>
+          <div class="total"><span>本次总量</span><span class="big" id="tot">0</span><span>U（保妥适 / 衡力）</span><span class="sub" id="dys"></span></div>
+          <div class="warns" id="warns"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3>点位与剂量对照（两种病并列）</h3>
+  <p>下表列出全部候选注射点，编号与上图、记录表一致。同一个点在两种病中的剂量不同，"—"表示该病不注射此点；当前病种所在列加底色，不适用的行变淡。额肌（8）与翼内肌（M6）不由助手自动选择，仅在表中列出。</p>
+  <div class="tw"><table class="wide ptt">
+    <thead><tr><th>点</th><th>肌肉 / 部位</th><th>定位</th><th class="n">深度</th><th class="n">面肌痉挛<br>起始 U（上限）</th><th class="n">Meige 综合征<br>起始 U（上限），每侧</th><th>风险与注意</th></tr></thead>
+    <tbody id="ptTable"></tbody>
+  </table></div>
+  <div class="callout dg"><b>眼周三条红线：</b>① 上睑<b>中央</b>不注射（上睑提肌，致上睑下垂）；② 下睑<b>中内侧</b>不深注（下斜肌，致复视；内眦泪道泵，致溢泪）；③ 针尖始终<b>朝外、远离眼球</b>，睑板前注射只做皮下浅注形成小皮丘。</div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <header><span class="sn">05</span><h2>靶肌识别与注射层次</h2></header>
+  <p>面部表情肌按<b>体表标志 + 动作测试</b>定位，不需要超声引导（Meige 的翼外肌等深部咀嚼肌例外，见下）。面肌痉挛只累及<b>面神经</b>支配的表情肌；咀嚼肌由<b>三叉神经</b>支配，只属于 Meige 综合征（口下颌肌张力障碍）的靶肌——"面肌痉挛"患者若咬肌、颞肌抽动，应重新考虑诊断。注射前让患者逐一做下表中的动作，同时观察自发抽动的牵拉方向，确认是哪块肌肉在抽，再选择对应的注射点。</p>
+  <div class="tw"><table class="wide">
+    <thead><tr><th>肌肉</th><th>支配神经</th><th>主要作用</th><th>动作测试</th><th>面肌痉挛</th><th>Meige 综合征</th><th>注射点</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="7">表情肌（面神经）</td></tr>
+      <tr><td><b>额肌</b></td><td>颞支</td><td>抬眉、额纹</td><td>抬眉</td><td><span class="mk o">○</span>按需（须含外侧点，防飞眉）</td><td><span class="mk o">△</span>一般不注射；仅额肌明显痉挛时慎用</td><td class="n">8</td></tr>
+      <tr><td><b>皱眉肌</b></td><td>颞支</td><td>眉头向内下、眉间纵纹</td><td>皱眉</td><td><span class="mk o">○</span>按需</td><td><span class="mk y">●</span>常规</td><td class="n">9</td></tr>
+      <tr><td><b>降眉间肌</b></td><td>颞支、颧支</td><td>眉头下拉、鼻根横纹</td><td>皱鼻根</td><td><span class="mk n">—</span></td><td><span class="mk y">●</span>常规（中线 1 点）</td><td class="n">M1</td></tr>
+      <tr><td><b>眼轮匝肌</b></td><td>颞支、颧支</td><td>眨眼、闭眼</td><td>轻闭眼、用力闭眼</td><td><span class="mk y">●</span>常规（患侧）</td><td><span class="mk y">●</span>常规（双侧）</td><td class="n">1–7</td></tr>
+      <tr><td><b>颧大肌 / 颧小肌</b></td><td>颧支、颊支</td><td>口角、上唇向外上</td><td>微笑、露上齿</td><td><span class="mk o">○</span>按需（防鼻唇沟不对称）</td><td><span class="mk n">—</span>一般不注射</td><td class="n">10–11</td></tr>
+      <tr><td><b>提上唇鼻翼肌</b></td><td>颊支</td><td>上提上唇、鼻翼</td><td>皱鼻</td><td><span class="mk x">✕</span>不注射</td><td><span class="mk x">✕</span>不注射</td><td>—</td></tr>
+      <tr><td><b>笑肌</b></td><td>颊支</td><td>口角水平向外</td><td>咧嘴</td><td><span class="mk o">○</span>按需</td><td><span class="mk n">—</span>一般不注射</td><td class="n">12</td></tr>
+      <tr><td><b>口轮匝肌</b></td><td>颊支、下颌缘支</td><td>闭唇、噘嘴</td><td>噘嘴、吹口哨</td><td><span class="mk o">○</span>按需（≤ 1.25 U）</td><td><span class="mk o">○</span>口周型（≤ 1.25 U）</td><td class="n">14–15</td></tr>
+      <tr><td><b>降口角肌</b></td><td>下颌缘支</td><td>口角向下</td><td>撇嘴</td><td><span class="mk o">○</span>按需</td><td><span class="mk o">○</span>口周型</td><td class="n">13</td></tr>
+      <tr><td><b>降下唇肌</b></td><td>下颌缘支</td><td>下唇向下外</td><td>露下齿</td><td><span class="mk x">✕</span>不注射</td><td><span class="mk x">✕</span>不注射</td><td>—</td></tr>
+      <tr><td><b>颏肌</b></td><td>下颌缘支</td><td>上提下唇、颏部皱缩</td><td>"噘下巴"</td><td><span class="mk o">○</span>按需</td><td><span class="mk o">○</span>口周型</td><td class="n">16</td></tr>
+      <tr><td><b>颈阔肌</b></td><td>颈支</td><td>紧颈、协助口角下拉</td><td>紧颈</td><td><span class="mk o">○</span>按需</td><td><span class="mk o">○</span>按需</td><td class="n">17–18</td></tr>
+      <tr class="grp"><td colspan="7">咀嚼肌与舌肌（三叉神经、舌下神经）——仅 Meige 综合征</td></tr>
+      <tr><td><b>咬肌</b></td><td>三叉神经下颌支</td><td>闭口、咬紧</td><td>咬牙时触摸下颌角上方隆起</td><td><span class="mk x">✕</span>不属面神经</td><td><span class="mk y">●</span>闭口型首选</td><td class="n">M2</td></tr>
+      <tr><td><b>颞肌</b></td><td>三叉神经下颌支</td><td>闭口、后退下颌</td><td>咬牙时触摸颞窝</td><td><span class="mk x">✕</span></td><td><span class="mk o">○</span>闭口型</td><td class="n">M3</td></tr>
+      <tr><td><b>翼内肌</b></td><td>三叉神经下颌支</td><td>闭口、侧移</td><td>—</td><td><span class="mk x">✕</span></td><td><span class="mk o">○</span>少用（肌电图引导）</td><td class="n">M6</td></tr>
+      <tr><td><b>翼外肌</b></td><td>三叉神经下颌支</td><td>张口、前伸、使下颌偏向对侧</td><td>张口、前伸下颌</td><td><span class="mk x">✕</span></td><td><span class="mk y">●</span>张口型、偏颌型（引导下）</td><td class="n">M4</td></tr>
+      <tr><td><b>二腹肌前腹</b></td><td>三叉神经（下颌舌骨肌神经）</td><td>降下颌、张口</td><td>抗阻张口时触摸颏下</td><td><span class="mk x">✕</span></td><td><span class="mk o">○</span>张口型补充</td><td class="n">M5</td></tr>
+      <tr><td><b>颏舌肌（舌）</b></td><td>舌下神经</td><td>伸舌</td><td>伸舌</td><td><span class="mk x">✕</span></td><td><span class="mk x">✕</span>不常规（易致吞咽困难）</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div class="box">
+      <h3>注射层次</h3>
+      <ul class="li">
+        <li><b>眼周（点 1–7）</b>：皮下浅注，1–2 mm，形成小皮丘即可。眼轮匝肌就在皮下，注深了反而容易弥散到眶内。</li>
+        <li><b>额肌、皱眉肌（点 8–9）</b>：额肌 2–3 mm；皱眉肌较深，针进到肌层（3–5 mm），位置不低于眶上缘上 1 cm。</li>
+        <li><b>颧大肌、颧小肌、笑肌（点 10–12）</b>：位于浅层脂肪深面，2–6 mm。嘱患者微笑时触摸肌腹，进针至肌腹内。笑肌很浅。</li>
+        <li><b>降口角肌（点 13）</b>：3–5 mm，靠近下颌缘、口角垂线外侧。</li>
+        <li><b>颏肌（点 16）</b>：较厚、较深，垂直进针触到骨面后稍退针推药。</li>
+        <li><b>颈阔肌（点 17–18）</b>：捏起肌肉，针几乎平行于皮肤，皮下浅注。</li>
+        <li class="only-meige"><b>咬肌（M2）</b>：深达肌腹 10–20 mm；<b>颞肌（M3）</b>：至骨面后稍退针；<b>翼外肌（M4）</b>：深约 3.5–4 cm，须引导；<b>二腹肌前腹（M5）</b>：颏下 1–1.5 cm，不再深入。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>按体表标志避开的结构</h3>
+      <ul class="li">
+        <li><b>上睑提肌</b>：上睑中央，不注射。</li>
+        <li><b>下斜肌、泪道</b>：下睑中内侧、内眦附近，不深注。</li>
+        <li><b>眶上 / 滑车上神经血管</b>：眶上缘内 1/3（眶上切迹），皱眉肌注射时针尖稍偏外上。</li>
+        <li><b>面动脉</b>：在咬肌前缘越过下颌缘，沿口角外侧斜向内眦走行。降口角肌点不要太靠外后，颧肌点进针前先触摸搏动。</li>
+        <li><b>内眦动静脉</b>：内眦附近，眼周内侧点浅注、轻压。</li>
+        <li><b>颏孔</b>：约在第二前磨牙下方、下颌体中部，降口角肌和颏肌注射时不要在此处深刺。</li>
+        <li><b>颈外静脉</b>：位于颈阔肌深面，颈阔肌只做浅注。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <header><span class="sn">06</span><h2>操作流程</h2></header>
+  <h3>外观并发症的预防（每次注射前必读）</h3>
+  <p>以下四种是面肌痉挛注射后患者最在意的外观问题，多数与<b>点位、深度、体积和注射后处理</b>有关，在操作中可以预防。</p>
+  <div class="prev">
+    <div class="pv">
+      <h3><span class="pvn">1</span>上睑下垂</h3>
+      <div class="k">原因</div>
+      <p>药物经上睑中央或穿过眶隔弥散到上睑提肌；眉部、皱眉肌注射位置过低，药液向下渗入眶内。</p>
+      <div class="k">操作中预防</div>
+      <ul class="li">
+        <li>上睑只注<b>内、外两点</b>，在睑缘上 2–3 mm 的睑板前；<b>瞳孔中线两侧各 5 mm 内不进针</b>。</li>
+        <li><b>极浅注射</b>：针斜面朝上，进针约 2 mm 即推药，见到小皮丘为准，不穿过眶隔。</li>
+        <li><b>小体积</b>：上睑每点 ≤ 0.1 mL；对药物敏感或既往下垂者改用 5 U / 0.1 mL，每点体积减半。</li>
+        <li>针尖<b>朝外、平行于睑缘</b>，不朝向眼球或眶内。</li>
+        <li>皱眉肌、眉外侧注射时，<b>非持针手示指压住眶上缘</b>，阻挡药液向下弥散；进针点距眶上缘 ≥ 1 cm。</li>
+        <li>注射后棉签轻压，<b>不揉、不按摩</b>；嘱当天勿揉眼、勿热敷、勿剧烈运动，4 小时内尽量保持头部直立（经验性建议）。</li>
+      </ul>
+      <div class="k">一旦发生</div>
+      <p>多在 2–6 周恢复；α 受体激动剂滴眼液（阿可乐定、羟甲唑啉等，视可及性）可临时提升上睑 1–2 mm；遮挡视野者提醒驾驶风险。下次上睑内侧点减至 1.25 U 或只注外侧点。</p>
+    </div>
+    <div class="pv">
+      <h3><span class="pvn">2</span>飞眉（眉尾上挑）</h3>
+      <div class="k">原因</div>
+      <p>眉部力量失衡：眼轮匝肌眶部（降眉力量）被削弱，或额肌只注射了内侧、外侧纤维仍在收缩，患侧眉尾被额肌外侧向上牵拉。面肌痉挛患者本身常有额肌同步收缩（对侧 Babinski 征），更容易出现。</p>
+      <div class="k">操作中预防</div>
+      <ul class="li">
+        <li>术前记录双侧<b>眉高与眉形</b>（静息、闭眼、抬眉三张照片）。</li>
+        <li>注射额肌时<b>必须包含外侧纤维</b>：点 8 取外眦垂线附近、眉上 ≥ 2 cm；需要两点时内、外两点剂量相同。</li>
+        <li>眉外侧眶部（点 6）注射在<b>眶缘水平及以下</b>，不在眉毛上方，剂量 ≤ 2.5 U。</li>
+        <li>额肌<b>不在眉上 2 cm 以内注射</b>，以免反过来造成眉下垂。</li>
+      </ul>
+      <div class="k">一旦发生</div>
+      <p>2 周复诊时在患侧眉峰（眉尾最高点）上方 2–3 cm 的额肌外侧补注 <b>1–1.25 U</b>；剂量宁少勿多，否则会转为眉下垂。下次额肌注射调整为内、外均衡。</p>
+    </div>
+    <div class="pv">
+      <h3><span class="pvn">3</span>眼袋青紫（下睑淤血）</h3>
+      <div class="k">原因</div>
+      <p>下睑皮肤很薄、皮下静脉丛丰富，深注进入眼轮匝肌下或眶隔、粗针、反复穿刺都会造成下睑及眼袋区淤青。</p>
+      <div class="k">操作中预防</div>
+      <ul class="li">
+        <li>术前询问抗栓药物：<b>非必需</b>的阿司匹林、非甾体抗炎药、鱼油、维生素 E、银杏制剂可停 5–7 天；医疗必需的抗凝、抗血小板药<b>不停</b>，告知风险并延长压迫。</li>
+        <li>注射前<b>冰敷 1–2 分钟</b>，使血管收缩。</li>
+        <li>强光斜照下睑，<b>看清并避开可见静脉</b>再进针。</li>
+        <li>用 <b>30G–32G、4 mm 短针</b>，一点一针，不做扇形穿刺，缓慢推药。</li>
+        <li>下睑点只做<b>皮下浅注</b>（皮丘），不向眶缘深部进针。</li>
+        <li>拔针后<b>立即用干棉签垂直轻压 2–3 分钟</b>，出血点延长到 5 分钟；压迫而不揉动。</li>
+        <li>嘱 24 小时内间断冷敷，当天避免饮酒、桑拿、剧烈运动。</li>
+      </ul>
+      <div class="k">一旦发生</div>
+      <p>48 小时内冷敷，之后改温敷促进吸收，一般 1–2 周消退，不影响疗效。张力性血肿或视力改变须立即眼科处理。</p>
+    </div>
+    <div class="pv">
+      <h3><span class="pvn">4</span>鼻唇沟不对称</h3>
+      <div class="k">原因</div>
+      <p>颧大肌、颧小肌、提上唇肌被药物削弱（直接注射或下睑眶部注射向下弥散），患侧鼻唇沟变浅、微笑时口角上提无力，健侧显得更深。长期痉挛者患侧鼻唇沟原本较深，注射后的变化更明显。</p>
+      <div class="k">操作中预防</div>
+      <ul class="li">
+        <li>术前拍摄<b>静息、微笑、示齿</b>三张正面照，记录双侧鼻唇沟深度；向患者说明注射后患侧可能变浅。</li>
+        <li>颊部抽动不明显时<b>不注射颧肌</b>；需要时从 <b>1.25 U</b> 起。</li>
+        <li>颧大肌点选在<b>颧骨体处近起点</b>（外眦垂线外侧），远离鼻唇沟和口角。</li>
+        <li><b>瞳孔中线内侧的中面部不注射</b>（提上唇肌、提上唇鼻翼肌区），鼻翼旁、鼻唇沟上方不进针。</li>
+        <li>下睑眶部点（点 7）注射在眶缘水平、偏外，体积 ≤ 0.1 mL，避免向下弥散到颧肌。</li>
+      </ul>
+      <div class="k">一旦发生</div>
+      <p>多在 4–8 周恢复。明显不对称者 2 周复诊时可在<b>健侧颧大肌注射 1–1.25 U</b> 平衡；下次患侧颧肌减量或停注，改为只做眼周。</p>
+    </div>
+  </div>
+
+  <div class="box only-meige">
+    <h3>口下颌肌注射要点（Meige 综合征）</h3>
+    <ul class="li">
+      <li><b>咬肌</b>：嘱患者咬紧牙，触摸下颌角上方隆起的肌腹，在下 1/2 分 2–3 点注射，进针深达肌腹。避开<b>后缘</b>（腮腺覆盖，误注致口干）、前缘浅层（笑肌，误注致微笑不对称）和耳屏—口角连线上的腮腺导管。</li>
+      <li><b>颞肌</b>：咬牙时触摸颞窝隆起，分 2–3 点；先摸到颞浅动脉搏动并避开，针至骨面后稍退再推药。</li>
+      <li><b>翼外肌</b>：必须在<b>肌电图（或超声）引导</b>下注射。用 27G 肌电图针，口外入路经乙状切迹（颧弓下缘、髁突前方）约 15° 向上进针；嘱患者张口、前伸下颌或向对侧移动下颌，出现明显肌电募集后推药；也可口内入路。偏颌型注射偏斜方向的<b>对侧</b>翼外肌。</li>
+      <li><b>二腹肌前腹</b>：颏下中线旁约 1 cm，抗阻张口时触摸确认，进针 1–1.5 cm，不再深入（深面为下颌舌骨肌、颏舌肌，误注致吞咽困难）。</li>
+      <li>注射口下颌肌后观察饮水情况；嘱 2 周内软食、细嚼慢咽，出现呛咳及时复诊。</li>
+    </ul>
+  </div>
+
+  <h3>操作步骤</h3>
+  <ol class="steps">
+    <li><div><b>核对与知情同意</b>：核对患者、患侧、药品与批号；告知上睑下垂、口角下垂、眼干等可能的不良反应及其可逆性；签署知情同意书。</div></li>
+    <li><div><b>评估与记录</b>：JRS 评分；拍照、录像（静息、轻闭眼、用力闭眼、抬眉、微笑、示齿、鼓腮、噘嘴、紧颈）；<b>记录双侧眉高、上睑位置（MRD1）和鼻唇沟深度</b>，作为判断飞眉、上睑下垂、鼻唇沟不对称的基线；询问抗栓药物；记录上次注射方案与效果。</div></li>
+    <li><div><b>体位</b>：半卧位 30°–45°，头枕固定，光线充足。注射者站于患侧。</div></li>
+    <li><div><b>配药</b>：按第 2 节稀释（推荐 2.5 U / 0.1 mL），每个注射点的剂量和体积提前写在记录表上。</div></li>
+    <li><div><b>标记与消毒</b>：用记号笔标记点位；酒精或碘伏消毒，<b>眼周避免消毒液流入眼内</b>；<b>眼周注射前冰敷 1–2 分钟</b>，减轻疼痛并减少眼袋青紫。</div></li>
+    <li><div><b>眼周注射</b>：强光斜照，避开可见静脉；非持针手轻绷皮肤；30G–32G 短针，针斜面向上，与皮肤呈 10°–15°，<b>针尖朝外、远离眼球</b>进针约 2 mm，在睑缘外 2–3 mm 的睑板前皮下缓慢推药，形成小皮丘。<b>避开上睑中央（瞳孔中线两侧各 5 mm）和下睑中内侧</b>；眉部注射时示指压住眶上缘。每点拔针后立即压迫。<span class="sub">（防上睑下垂、飞眉、眼袋青紫）</span></div></li>
+    <li><div><b>中下面部注射</b>：嘱患者做目标动作（见第 5 节），触诊确认肌腹，进针前触摸面动脉搏动。<b>瞳孔中线内侧的中面部不注射</b>；颧大肌取颧骨体处近起点（外眦垂线外侧），远离鼻唇沟<span class="sub">（防鼻唇沟不对称）</span>；降口角肌取下颌缘上方约 1 cm、口角垂线外侧；颏肌取中线旁 0.5–1 cm 颏突处，深注到骨膜上。</div></li>
+    <li><div><b>注射后处理</b>：干棉签垂直轻压 2–3 分钟，<b>不揉、不按摩</b>；观察 15–30 分钟。嘱当天勿揉眼、勿热敷、勿饮酒及剧烈运动，24 小时内可间断冷敷，4 小时内尽量保持头部直立。告知患者 2–5 天起效，约 2 周达峰，维持约 3 个月。</div></li>
+    <li><div><b>记录与预约</b>：填写第 9 节记录表（每点剂量、浓度、批号、总量、即时反应）；预约 2 周评估，约 12 周后再评估是否重复注射。</div></li>
+  </ol>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <header><span class="sn">07</span><h2>处方模板</h2></header>
+  <p><span class="only-hfs">A–D 以<b>左侧面肌痉挛</b>为例，E 为<b>双侧面肌痉挛</b>。</span><span class="only-meige">Meige 综合征模板 F–I 为双侧对称注射，"各"表示每侧剂量，降眉间肌为中线 1 点。</span>点号见第 4 节；切换顶部病种可查看另一组模板。剂量单位为保妥适 / 衡力 U，浓度 2.5 U / 0.1 mL。</p>
+  <div class="rx" id="rx"></div>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <header><span class="sn">08</span><h2>不良反应、处理与随访</h2></header>
+  <div class="tw"><table class="wide">
+    <thead><tr><th>不良反应</th><th>常见原因</th><th>预防</th><th>处理</th></tr></thead>
+    <tbody>
+      <tr><td><b>上睑下垂</b>（最常见）</td><td>上睑中央注射或药物向眶隔后弥散至上睑提肌</td><td>只做上睑内、外侧睑板前浅注；小体积；针尖朝外</td><td>多 2–6 周自行恢复；可用 α 受体激动剂滴眼液（如阿可乐定、羟甲唑啉，视可及性）临时改善</td></tr>
+      <tr><td><b>闭眼不全 / 暴露性角膜炎</b></td><td>眼轮匝肌过度无力</td><td>首次低剂量；已有闭眼不全者减量</td><td>人工泪液、夜间眼膏，必要时眼科处理</td></tr>
+      <tr><td><b>眼干、畏光</b></td><td>瞬目减少</td><td>术前评估干眼</td><td>人工泪液</td></tr>
+      <tr><td><b>溢泪</b></td><td>内眦附近注射影响泪道泵</td><td>下睑点偏外，避开内眦</td><td>多自限</td></tr>
+      <tr><td><b>复视</b>（少见）</td><td>下睑中内侧深注累及下斜肌</td><td>下睑点浅注、偏外</td><td>自限，必要时单眼遮盖</td></tr>
+      <tr><td><b>飞眉</b>（眉尾上挑）</td><td>眉外侧眶部被削弱，或额肌只注内侧、外侧纤维仍收缩</td><td>额肌注射包含外侧点、距眉 ≥ 2 cm；点 6 在眶缘水平且 ≤ 2.5 U</td><td>2 周时患侧眉峰上方 2–3 cm 额肌外侧补注 1–1.25 U</td></tr>
+      <tr><td><b>鼻唇沟不对称</b></td><td>颧大肌、颧小肌、提上唇肌被削弱，患侧鼻唇沟变浅</td><td>瞳孔中线内侧中面部不注射；颧大肌近起点注射、从 1.25 U 起；点 7 偏外、小体积</td><td>4–8 周恢复；明显者健侧颧大肌 1–1.25 U 平衡</td></tr>
+      <tr><td><b>口角下垂 / 微笑不对称</b></td><td>颧大肌、笑肌、降口角肌剂量偏大或点位偏差；眶下注射弥散到颧肌</td><td>下面部从 1.25 U 起；颧大肌靠近起点注射；首次可只做眼周</td><td>等待恢复（4–8 周）；明显不对称者可在健侧相应肌肉小剂量对称注射</td></tr>
+      <tr><td><b>流涎、吹气漏气、发音不清</b></td><td>口轮匝肌注射</td><td>≤ 1.25 U，仅在唇部抽动明显时注射</td><td>等待恢复</td></tr>
+      <tr><td><b>下唇不对称</b></td><td>降口角肌注射偏内，药物累及降下唇肌</td><td>在下颌缘附近、口角垂线外侧注射</td><td>等待恢复</td></tr>
+      <tr><td><b>咀嚼无力</b> <span class="tg2 meige">Meige</span></td><td>咬肌、颞肌剂量偏大</td><td>首次咬肌每侧 ≤ 25 U，分 2–3 点</td><td>软食，多在 4–6 周恢复</td></tr>
+      <tr><td><b>吞咽困难</b> <span class="tg2 meige">Meige</span></td><td>二腹肌前腹、颏下、舌肌、翼外肌注射；与颈部注射同次</td><td>小剂量、引导定位；避免与颈部多块肌肉同次大剂量</td><td>软食、少量慢咽；严重者评估吞咽、防误吸</td></tr>
+      <tr><td><b>构音障碍、流涎</b> <span class="tg2 meige">Meige</span></td><td>双侧口轮匝肌、舌肌注射</td><td>口轮匝肌每点 ≤ 1.25 U，舌肌不常规注射</td><td>等待恢复</td></tr>
+      <tr><td><b>睁眼困难加重</b> <span class="tg2 meige">Meige</span></td><td>额肌注射后无力</td><td>额肌一般不注射，确需注射时小剂量、内外均衡</td><td>等待恢复</td></tr>
+      <tr><td><b>颈部无力、吞咽不适</b>（罕见）</td><td>颈阔肌深注</td><td>捏起颈阔肌浅注</td><td>对症处理</td></tr>
+      <tr><td><b>眼袋青紫 / 淤青</b></td><td>下睑皮薄、静脉丛丰富；深注、粗针、反复穿刺；服用抗栓药物</td><td>停用非必需抗栓药 5–7 天；冰敷；避开可见静脉；32G 短针浅注；拔针即压迫 2–3 分钟</td><td>48 小时内冷敷，之后温敷，1–2 周消退</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout dg"><b>立即就医：</b>出现吞咽困难、呼吸困难、言语含糊、全身无力等远处扩散症状时须立即就诊。</div>
+  <div class="cols">
+    <div class="box"><h3>随访节点</h3>
+      <ul class="li">
+        <li><b>2 周</b>：疗效（JRS、患者主观改善百分比）、不良反应、对称性，复拍视频。</li>
+        <li><b>4–6 周</b>：有不良反应者复查至恢复。</li>
+        <li><b>约 12 周</b>：记录疗效维持时间，决定下次方案（沿用、加量或减量、改点位）。</li>
+      </ul>
+    </div>
+    <div class="box"><h3>疗效不佳时的检查清单</h3>
+      <ul class="li">
+        <li>剂量是否偏低？点位是否覆盖主要抽动肌群？</li>
+        <li>药品保存与配制是否规范，浓度是否正确？</li>
+        <li>下面部注射是否过深（进入深层脂肪）或点位偏离肌腹？可让患者做动作重新触诊定位。</li>
+        <li>多次加量仍无效者考虑继发性无反应（抗体），并评估 MVD。</li>
+        <li>复核诊断：是否为面瘫后联动、功能性面肌痉挛或其他疾病。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <header><span class="sn">09</span><h2>注射记录表与参考文献</h2></header>
+  <div class="mapsel">
+    <div class="facewrap"><div class="face" id="face10"></div></div>
+    <div class="tw"><table class="rec mid">
+      <tbody>
+        <tr><td style="width:30%">姓名 / 病历号</td><td><input aria-label="姓名病历号"></td></tr>
+        <tr><td>日期 / 第几次注射</td><td><input aria-label="日期"></td></tr>
+        <tr><td>患侧</td><td><input aria-label="患侧"></td></tr>
+        <tr><td>药品 / 批号</td><td><input aria-label="药品批号"></td></tr>
+        <tr><td>浓度</td><td><input aria-label="浓度" placeholder="2.5 U / 0.1 mL"></td></tr>
+        <tr><td>注射前 JRS（严重度 / 频率）</td><td><input aria-label="JRS"></td></tr>
+        <tr><td>即时反应</td><td><input aria-label="即时反应"></td></tr>
+        <tr><td>2 周评估 / 不良反应</td><td><input aria-label="2周评估"></td></tr>
+        <tr><td>疗效维持时间（周）</td><td><input aria-label="维持时间"></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="tw"><table class="rec mid">
+    <thead><tr><th>点</th><th>部位</th><th class="n">左侧 U（mL）</th><th class="n">右侧 U（mL）</th><th>备注</th></tr></thead>
+    <tbody id="recBody"></tbody>
+  </table></div>
+  <p class="sub">本页可直接打印（打印时自动隐藏目录与按钮）。在选肌助手中选好方案后打印，记录表会预填剂量。</p>
+
+  <h3>参考文献</h3>
+  <ol class="refs">
+    <li>Wang A, Jankovic J. Hemifacial spasm: clinical findings and treatment. Muscle Nerve. 1998;21(12):1740–1747.</li>
+    <li>Simpson DM, et al. Assessment: Botulinum neurotoxin for the treatment of movement disorders (an evidence-based review). Neurology. 2008;70(19):1699–1706.</li>
+    <li>Rosenstengel C, et al. Hemifacial spasm: conservative and surgical treatment options. Dtsch Arztebl Int. 2012;109(41):667–673.</li>
+    <li>Chaudhry N, Srivastava A, Joshi L. Hemifacial spasm: the past, present and future. J Neurol Sci. 2015;356(1–2):27–31.</li>
+    <li>Bilyk JR, et al. Chemodenervation for the treatment of facial dystonia: a report by the American Academy of Ophthalmology. Ophthalmology. 2018;125(9):1459–1467. doi:10.1016/j.ophtha.2018.03.013</li>
+    <li>Ababneh OH, Cetinkaya A, Kulwin DR. Long-term efficacy and safety of botulinum toxin A injections to treat blepharospasm and hemifacial spasm. Clin Exp Ophthalmol. 2014;42(3):254–261. doi:10.1111/ceo.12165</li>
+    <li>Bladen JC, et al. Long-term outcome of flexible onabotulinum toxin A treatment in facial dystonia. Eye. 2019;33(3):349–352. doi:10.1038/s41433-018-0203-3</li>
+    <li>Maytharakcheep S, Bhidayasiri R. Botulinum toxin treatment for hemifacial spasm: harmonising neurological and aesthetic outcomes. J Neural Transm. 2025;132(1):23–38. doi:10.1007/s00702-024-02821-y</li>
+    <li>Eiamsamarng A, et al. Efficacy of isolated periocular botulinum toxin A injections versus periocular and adjunctive lower facial injections in hemifacial spasm: a randomized, controlled, noninferiority, crossover trial. Ann Med. 2025;57(1):2537921. doi:10.1080/07853890.2025.2537921</li>
+    <li>Aliyeva T, et al. Electrophysiological evidence of contralateral neuromuscular effects following long-term botulinum toxin therapy in hemifacial spasm. Toxins. 2025;17(8):407. doi:10.3390/toxins17080407</li>
+    <li>Jankovic J, Orman J. Botulinum A toxin for cranial-axial dystonia: a double-blind, placebo-controlled study. Neurology. 1987;37(4):616–623.</li>
+    <li>Tan EK, et al. Validation of a short disease specific quality of life scale for hemifacial spasm: correlation with SF-36. J Neurol Neurosurg Psychiatry. 2005;76(12):1707–1710.</li>
+    <li>Hachiya K, et al. Staged bilateral microvascular decompression for bilateral hemifacial spasm. Asian J Neurosurg. 2026;21(4):907–912. doi:10.1055/s-0046-1822646</li>
+    <li>Hassell TJW, Charles D. Treatment of blepharospasm and oromandibular dystonia with botulinum toxins. Toxins. 2020;12(4):269. doi:10.3390/toxins12040269</li>
+    <li>Comella CL. Systematic review of botulinum toxin treatment for oromandibular dystonia. Toxicon. 2018;147:96–99. doi:10.1016/j.toxicon.2018.02.006</li>
+    <li>Sinclair CF, Gurey LE, Blitzer A. Oromandibular dystonia: long-term management with botulinum toxin. Laryngoscope. 2013;123(12):3078–3083. doi:10.1002/lary.23265</li>
+    <li>Comtesse SM, Tavassoli F, Jabbari B. Botulinum toxin treatment of lingual dystonia, oromandibular dystonia and bruxism: a review and update. Toxicon. 2025;266:108503. doi:10.1016/j.toxicon.2025.108503</li>
+    <li>中国肉毒毒素治疗应用专家共识. 中华神经科杂志, 2018, 51(10): 779–786.</li>
+    <li>面肌痉挛诊疗中国专家共识. 中国微侵袭神经外科杂志, 2014, 19(11): 528–532.</li>
+  </ol>
+</section>
+</main>
+</div>
+<script>
+// ===== 注射点（坐标按"患者左侧发病"绘制：图右侧 = 患者左侧；右侧发病时镜像）=====
+// d: [轻 / 首次低量, 标准, 疗效不足加量]；mx: 单点上限；need: 1 = 轻即注射，2 = 明显才注射
+// o: 剂量文字偏移 [dx, dy, 对齐]
+const PT = [
+ {id:1,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑内侧（睑板前）',x:240,y:176,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑内 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {id:2,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑外侧（睑板前）',x:272,y:177,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑外 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {id:3,r:'lid',need:1,mu:'眼轮匝肌',n:'下睑外侧（睑板前）',x:272,y:211,d:[1.25,2.5,3.75],mx:5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，下睑外 1/3',dep:'皮下 1–2 mm',risk:'闭眼不全、眼干；深注 → 眼袋青紫',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {id:4,r:'lid',need:2,mu:'眼轮匝肌',n:'下睑内侧（睑板前）',x:240,y:211,d:[1.25,1.25,2.5],mx:2.5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，泪小点外侧，只做浅注',dep:'皮下 1 mm',risk:'溢泪；深注 → 下斜肌，复视',mg:{r:'lid',need:2,d:[1.25,2.5,2.5],mx:2.5}},
+ {id:5,r:'orb',need:1,mu:'眼轮匝肌眶部',n:'外眦外侧',x:302,y:195,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦外约 1 cm，眶外缘外侧',dep:'皮下 2 mm',risk:'淤青',mg:{r:'orb',need:1,d:[2.5,2.5,5],mx:5}},
+ {id:6,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'眉外侧（眶上外）',x:294,y:161,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'眉外 1/3 下缘、眶上缘外侧（不在眉毛上方）',dep:'皮下 2 mm',risk:'向下弥散 → 上睑下垂；降眉力量减弱 → 飞眉',mg:{r:'orb',need:2,d:[2.5,2.5,5],mx:5}},
+ {id:7,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'下睑眶部（外下）',x:298,y:233,d:[1.25,2.5,2.5],mx:2.5,o:[10,4,'start'],loc:'眶下缘外 1/3，眶缘水平、偏外',dep:'皮下 2 mm',risk:'弥散至颧肌 → 口角下垂、鼻唇沟不对称；青紫',mg:{r:'orb',need:2,d:[1.25,2.5,2.5],mx:2.5}},
+ {id:8,r:'brow',need:1,mu:'额肌',n:'额肌外侧',x:268,y:114,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦垂线附近、眉上 ≥ 2 cm（须包含外侧纤维）',dep:'2–3 mm',risk:'过低 → 眉下垂；只注内侧 → 飞眉',mg:{r:'glab',need:3,d:[2.5,5,10],mx:20,loc:'仅额肌本身明显痉挛时；眉上 ≥ 2 cm、内外均衡',risk:'睁眼困难加重、眉下垂（患者靠额肌辅助睁眼）'}},
+ {id:9,r:'brow',need:2,mu:'皱眉肌',n:'皱眉肌',x:226,y:146,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'眉头上方、眶上缘上约 1 cm',dep:'3–5 mm（肌层）',risk:'位置过低 → 上睑下垂',mg:{r:'glab',need:1,d:[2.5,5,7.5],mx:10}},
+ {id:10,r:'cheek',need:1,mu:'颧大肌',n:'颧大肌（近起点）',x:298,y:252,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'颧骨体处近起点（外眦垂线外侧），远离鼻唇沟',dep:'3–6 mm（浅层脂肪深面）',risk:'口角下垂、鼻唇沟不对称',mg:null},
+ {id:11,r:'cheek',need:2,mu:'颧小肌',n:'颧小肌',x:268,y:250,d:[1.25,1.25,2.5],mx:2.5,o:[-10,4,'end'],loc:'颧大肌内侧，颧骨前面下方',dep:'3–5 mm',risk:'上唇下垂、鼻唇沟变浅',mg:null},
+ {id:12,r:'mouth',need:1,mu:'笑肌',n:'笑肌',x:290,y:322,d:[1.25,1.25,2.5],mx:2.5,o:[10,4,'start'],loc:'口角外侧 1.5–2 cm 水平',dep:'皮下 2–3 mm（很浅）',risk:'口角无力、不对称',mg:null},
+ {id:13,r:'mouth',need:1,mu:'降口角肌',n:'降口角肌',x:256,y:393,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘上方约 1 cm、口角垂线外侧',dep:'3–5 mm',risk:'偏内 → 降下唇肌，下唇不对称；外侧有面动脉',mg:{r:'peri',need:1,d:[1.25,2.5,5],mx:5}},
+ {id:14,r:'lip',need:1,mu:'口轮匝肌',n:'上唇外侧',x:222,y:314,d:[1.25,1.25,1.25],mx:1.25,o:[0,-12,'middle'],loc:'上唇外 1/3，唇红缘上 3–5 mm',dep:'皮下 2 mm',risk:'流涎、吹气漏气',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
+ {id:15,r:'lip',need:2,mu:'口轮匝肌',n:'下唇外侧',x:222,y:352,d:[1.25,1.25,1.25],mx:1.25,o:[0,15,'middle'],loc:'下唇外 1/3，唇红缘下 3–5 mm',dep:'皮下 2 mm',risk:'流涎、发音不清',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
+ {id:16,r:'chin',need:1,mu:'颏肌',n:'颏肌',x:216,y:402,d:[2.5,2.5,5],mx:5,o:[0,-12,'middle'],loc:'中线旁 0.5–1 cm，颏突下 1/3',dep:'深注至骨膜上 6–10 mm',risk:'位置过高 → 口唇闭合不全、流涎',mg:{r:'peri',need:1,d:[2.5,2.5,5],mx:5}},
+ {id:17,r:'neck',need:1,mu:'颈阔肌',n:'颈阔肌（上）',x:252,y:452,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘下约 2 cm，收缩时出现的条索上',dep:'捏起后皮下浅注',risk:'深注 → 吞咽不适；颈外静脉',mg:{r:'neck',need:1,d:[2.5,2.5,5],mx:5}},
+ {id:18,r:'neck',need:2,mu:'颈阔肌',n:'颈阔肌（下）',x:258,y:482,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'同一条索下方 1.5–2 cm',dep:'捏起后皮下浅注',risk:'同上',mg:{r:'neck',need:2,d:[2.5,2.5,5],mx:5}}
+ ,{id:'M1',h:false,mid:1,mu:'降眉间肌',n:'降眉间肌（眉间中线）',x:200,y:170,o:[0,-13,'middle'],loc:'两眉头连线中点下方、鼻根上部，中线 1 点',dep:'3–5 mm（肌层）',risk:'弥散 → 上睑下垂（少见）',mg:{r:'glab',need:1,d:[2.5,2.5,5],mx:5}}
+ ,{id:'M2',h:false,mu:'咬肌',n:'咬肌',x:298,y:358,o:[11,4,'start'],loc:'咬紧牙时隆起处，下颌角上方的下 1/2 肌腹；避开后缘（腮腺覆盖）',dep:'10–20 mm（深达肌腹）',risk:'咀嚼无力；后缘误入腮腺 → 口干；前缘过浅 → 笑肌，微笑不对称',mg:{r:'close',need:1,d:[20,30,50],mx:50,pts:'每侧分 2–3 点；闭口型首选'}}
+ ,{id:'M3',h:false,mu:'颞肌',n:'颞肌',x:322,y:152,o:[11,4,'start'],loc:'颞窝内咬牙时隆起处，眶外缘后方 2–3 cm',dep:'至骨面后稍退针',risk:'颞浅动脉；局部疼痛',mg:{r:'close',need:2,d:[15,20,40],mx:40,pts:'每侧分 2–3 点；偏颌型注射同侧'}}
+ ,{id:'M4',h:false,mu:'翼外肌',n:'翼外肌',x:316,y:262,o:[11,4,'start'],loc:'肌电图引导：口外经乙状切迹（颧弓下、髁突前）约 15° 向上进针，或口内入路',dep:'3.5–4 cm（深部，27G 肌电图针）',risk:'须引导定位；咀嚼无力、吞咽不适',mg:{r:'open',need:1,d:[10,15,20],mx:20,pts:'每侧 1 点（引导下）；偏颌型注射对侧'}}
+ ,{id:'M5',h:false,mu:'二腹肌前腹',n:'二腹肌前腹',x:214,y:454,o:[-11,4,'end'],loc:'颏下，中线旁约 1 cm',dep:'1–1.5 cm',risk:'吞咽困难（剂量偏大或过深进入下颌舌骨肌、颏舌肌）',mg:{r:'open',need:2,d:[2.5,5,5],mx:5}}
+ ,{id:'M6',h:false,mu:'翼内肌',n:'翼内肌',x:284,y:380,o:[11,4,'start'],loc:'下颌角内侧，经下颌下缘向上进针，肌电图引导',dep:'2–3 cm',risk:'吞咽困难；须引导定位',mg:{r:'close',need:3,d:[10,15,20],mx:20,pts:'少用，仅在咬肌 / 颞肌效果不足时'}}
+];
+const HS = [   // 健侧对称点：坐标同点 10 / 13，绘制在健侧（镜像）
+ {id:'H1',hs:1,mu:'颧大肌',n:'健侧颧大肌',x:298,y:252,dose:1.25,o:[10,4,'start'],loc:'与患侧点 10 对称'},
+ {id:'H2',hs:1,mu:'降口角肌',n:'健侧降口角肌',x:256,y:393,dose:1.25,o:[10,4,'start'],loc:'与患侧点 13 对称'}
+];
+const R = [
+ {k:'lid',n:'眼睑（睑板前）',e:'眨眼增多、眼睑抽动'},
+ {k:'orb',n:'外眦 / 眶周',e:'眼周皱缩、外眦抽动'},
+ {k:'brow',n:'额部 / 眉区',e:'闭眼时同侧眉上抬或眉间皱缩'},
+ {k:'cheek',n:'颊部（颧肌）',e:'口角、上唇向外上牵拉'},
+ {k:'mouth',n:'口角（笑肌 / 降口角肌）',e:'口角向外或向下抽动'},
+ {k:'lip',n:'口唇（口轮匝肌）',e:'唇部抽动、噘嘴样'},
+ {k:'chin',n:'颏部（颏肌）',e:'下颏皮肤橘皮样皱缩'},
+ {k:'neck',n:'颈部（颈阔肌）',e:'颈前外侧条索样收缩'}
+];
+const MRX = [
+ {dz:'meige',both:true,t:'F 眼睑痉挛型（Meige 眼部，首次）', d:'双侧同步瞬目增多、闭眼；不注射额肌', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[9,2.5],['M1',2.5,'mid']]},
+ {dz:'meige',both:true,t:'G 眼睑痉挛 + 闭口型', d:'咬紧、牙关紧闭、磨牙；咬肌 ± 颞肌', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[9,2.5],['M1',2.5,'mid'],['M2',25],['M3',15]]},
+ {dz:'meige',both:true,t:'H 眼睑痉挛 + 张口型', d:'不自主张口、下颌前伸；翼外肌须肌电图引导，二腹肌前腹按需加', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[9,2.5],['M1',2.5,'mid'],['M4',10]]},
+ {dz:'meige',both:true,t:'I 眼睑痉挛 + 口周型', d:'口角下拉、颏部皱缩、噘嘴；口轮匝肌小剂量', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[9,2.5],['M1',2.5,'mid'],[13,2.5],[16,2.5],[14,1.25]]}
+];
+const RM = [   // Meige 综合征：双侧对称，按部位选择
+ {k:'lid',n:'眼睑（睑板前）',e:'瞬目增多、闭眼、睁眼困难'},
+ {k:'orb',n:'眶周 / 外眦',e:'用力闭眼、眼周皱缩'},
+ {k:'glab',n:'眉间（皱眉肌 / 降眉间肌）',e:'皱眉、眉头下压'},
+ {k:'peri',n:'口周（降口角肌 / 颏肌 / 口轮匝肌）',e:'口角下拉、颏部皱缩、噘嘴'},
+ {k:'close',n:'闭口型（咬肌 / 颞肌）',e:'咬紧、牙关紧闭、磨牙'},
+ {k:'open',n:'张口型（翼外肌 / 二腹肌前腹）',e:'不自主张口、下颌前伸'},
+ {k:'neck',n:'颈阔肌',e:'颈前条索、口角下拉'}
+];
+const DZ = {hfs:'面肌痉挛', meige:'Meige 综合征'};
+const st = { dz:'hfs', side:'L', stage:'first', conc:2.5, hs:false,
+  sev:{ L:{lid:2,orb:1,brow:0,cheek:0,mouth:0,lip:0,chin:0,neck:0},
+        R:{lid:2,orb:1,brow:0,cheek:0,mouth:0,lip:0,chin:0,neck:0} },
+  msev:{lid:2,orb:1,glab:1,peri:0,close:0,open:0,neck:0},
+  adv:{ptosis:false,droop:false,dry:false,dysph:false} };
+const SN = {L:'左', R:'右'};
+const isM = () => st.dz==='meige';
+const sidesOn = () => isM() || st.side==='B' ? ['L','R'] : [st.side];
+const other = s => s==='L' ? 'R' : 'L';
+const sv = k => isM() ? (st.msev[k]||0) : Math.max(...sidesOn().map(s=>st.sev[s][k]||0));
+const spec = p => isM() ? p.mg : (p.h===false ? null : p);   // 当前病种下该点的剂量规格
+const fmt = v => (Math.round(v*100)/100).toString();
+const vol = d => (d/st.conc*0.1).toFixed(3).replace(/0$/,'');
+const rng = s => s ? (s.d[0]===s.d[1] ? fmt(s.d[0]) : `${fmt(s.d[0])}–${fmt(s.d[1])}`) : '';
+
+// ===== 计算 =====
+function computeSide(sev, sd){
+  const out = [];
+  for(const p of PT){
+    const sp = spec(p); if(!sp) continue;
+    if(p.mid && sd==='R') continue;            // 中线点只计一次
+    const s = sev[sp.r];
+    if(!s || s < sp.need) continue;
+    let i = s===1 ? 0 : 1;
+    if(st.stage==='insuff') i = Math.min(i+1, 2);
+    let dose = sp.d[i]; const notes = [];
+    if(st.adv.ptosis && (p.id===1 || p.id===9)){ dose = sp.d[0]; notes.push('既往上睑下垂：减量，贴近睑缘偏内'); }
+    if(st.adv.dry){
+      if(p.id===4) continue;
+      if(p.id===3){ dose = sp.d[0]; notes.push('眼干 / 闭眼不全：减量'); }
+    }
+    if(!isM() && st.adv.droop){
+      if(p.id===7 || p.id===11) continue;
+      if([10,12,13].includes(p.id)){ dose = sp.d[0]; notes.push('既往口角下垂：减量'); }
+    }
+    if(isM() && st.adv.dysph){
+      if(p.id==='M5' || p.id===18) continue;
+      if(p.id==='M4' || p.id===17){ dose = sp.d[0]; notes.push('既往吞咽困难：减量'); }
+    }
+    out.push({...p, ...sp, dose, notes});
+  }
+  return out;
+}
+function compute(){
+  const res = {L:[], R:[]};
+  if(isM()){ res.L = computeSide(st.msev,'L'); res.R = computeSide(st.msev,'R'); return res; }
+  for(const s of sidesOn()) res[s] = computeSide(st.sev[s], s);
+  if(st.side!=='B' && st.hs){
+    const o = other(st.side);
+    res[o].push({...HS[0]});
+    if(st.sev[st.side].mouth>0) res[o].push({...HS[1]});
+  }
+  return res;
+}
+
+// ===== 面部图 =====
+const mxs = (x,sd) => sd==='R' ? 400-x : x;
+const flipS = (a,sd) => sd==='R' ? (a==='start'?'end':a==='end'?'start':a) : a;
+const MUSCLES = `
+<ellipse class="fc-ring" cx="255" cy="194" rx="45" ry="33" stroke-width="16"/>
+<path class="fc-m" d="M212 74 Q268 58 316 102 L306 148 Q262 136 216 144 Z"/>
+<path class="fc-ms" d="M206 154 Q226 144 250 149" stroke-width="6"/>
+<path class="fc-ms" d="M316 230 L240 326" stroke-width="11"/>
+<path class="fc-ms" d="M290 224 L231 300" stroke-width="6"/>
+<path class="fc-ms" d="M322 318 L240 330" stroke-width="6"/>
+<path class="fc-m" d="M238 337 L244 413 L276 404 Z"/>
+<ellipse class="fc-m" cx="216" cy="402" rx="11" ry="16"/>
+<path class="fc-m" d="M228 436 L266 428 L276 506 L236 506 Z"/>`;
+const MUSCLES_M = `
+<path class="fc-m" d="M302 118 Q330 118 336 168 L332 206 L310 190 Q300 150 302 118 Z"/>
+<path class="fc-m" d="M306 264 L332 272 L318 382 L288 372 Z"/>
+<ellipse class="fc-deep" cx="316" cy="262" rx="11" ry="7"/>
+<ellipse class="fc-m" cx="214" cy="452" rx="7" ry="12"/>
+<path class="fc-m" d="M194 158 L206 158 L208 184 L192 184 Z"/>`;
+const ZONES = `
+<ellipse class="zone" cx="256" cy="177" rx="8" ry="6"/>
+<ellipse class="zone" cx="221" cy="207" rx="8" ry="9"/>
+<path class="zone" d="M236 128 L292 132 L290 150 Q262 142 236 148 Z"/>
+<path class="zone" d="M208 228 L248 226 L244 288 L216 272 Z"/>`;
+const ZONE_FRONT = `<path class="zone" d="M212 74 Q268 58 316 102 L306 126 Q262 116 216 124 Z"/>`;
+const MLAB = [['额肌',262,90,'middle'],['颧大肌',340,272,'start'],['笑肌',336,320,'start'],['降口角肌',292,418,'start'],['颏肌',200,432,'middle'],['颈阔肌',284,500,'start']];
+const MLAB_M = [['颞肌',338,118,'start'],['咬肌',334,372,'start'],['翼外肌（深）',334,288,'start'],['二腹肌',200,488,'middle'],['颏肌',200,432,'middle'],['颈阔肌',284,500,'start']];
+function faceSVG(opt){
+  // opt: {res:{L:[],R:[]}} 显示本次方案；{all:true, hsShow:bool} 显示当前病种的全部候选点
+  let s = `<svg viewBox="0 0 400 510" role="img" aria-label="面部注射点位图（正面观）">`;
+  s += `<text class="fc-side" x="12" y="18">患者右侧</text><text class="fc-side" x="388" y="18" text-anchor="end">患者左侧</text>`;
+  s += `<path class="fc-skin" d="M130 380 L122 510 L278 510 L270 380 Z"/>`;
+  s += `<ellipse class="fc-skin" cx="64" cy="230" rx="13" ry="32"/><ellipse class="fc-skin" cx="336" cy="230" rx="13" ry="32"/>`;
+  s += `<path class="fc-skin" d="M200 40 C292 40 336 110 336 205 C336 280 318 340 290 384 C264 424 234 442 200 442 C166 442 136 424 110 384 C82 340 64 280 64 205 C64 110 108 40 200 40 Z"/>`;
+  s += `<path class="fc-ln" d="M110 162 Q145 146 182 156 M218 156 Q255 146 290 162"/>`;
+  for(const cx of [145,255]) s += `<path class="fc-eye" d="M${cx-30} 195 Q${cx} 167 ${cx+30} 195 Q${cx} 213 ${cx-30} 195 Z"/><circle class="fc-iris" cx="${cx}" cy="194" r="7"/>`;
+  s += `<path class="fc-ln" d="M196 200 L186 262 Q200 274 214 262 L204 200 M178 268 Q172 276 182 280 M222 268 Q228 276 218 280"/>`;
+  s += `<path class="fc-ln" d="M178 268 Q160 300 162 330 M222 268 Q240 300 238 330"/>`;
+  s += `<path class="fc-eye" d="M164 332 Q182 320 200 325 Q218 320 236 332 Q200 352 164 332 Z"/><path class="fc-ln" d="M164 332 Q200 336 236 332"/>`;
+  s += `<path class="fc-ln" d="M186 410 Q200 416 214 410"/>`;
+  const aff = sidesOn(), M = isM();
+  for(const sd of aff){
+    const g = sd==='R' ? ' transform="translate(400 0) scale(-1 1)"' : '';
+    s += `<g${g}>${MUSCLES}${M?MUSCLES_M+ZONE_FRONT:''}${ZONES}</g>`;
+    s += (M?MLAB_M:MLAB).map(([t,x,y,a])=>`<text class="fc-mn" x="${mxs(x,sd)}" y="${y}" text-anchor="${flipS(a,sd)}">${t}</text>`).join('');
+  }
+  const pt = (p, sd, on, dose, hs) => {
+    const x = p.mid ? p.x : mxs(p.x, sd);
+    let t = `<g class="pt${hs?' hs':''}${on?' on':' dim'}"><circle cx="${x}" cy="${p.y}" r="${String(p.id).length>1&&isNaN(p.id)?9:7.5}"/><text x="${x}" y="${p.y}">${p.id}</text></g>`;
+    if(dose && !opt.all){
+      const dx = sd==='R' && !p.mid ? -p.o[0] : p.o[0];
+      t += `<text class="pd${hs?' hs':''}" x="${x+dx}" y="${p.y+p.o[1]}" text-anchor="${p.mid?p.o[2]:flipS(p.o[2],sd)}" dominant-baseline="central">${fmt(dose)}</text>`;
+    }
+    return t;
+  };
+  for(const sd of ['L','R']){
+    if(aff.includes(sd)){
+      const act = opt.res ? new Map(opt.res[sd].filter(p=>!p.hs).map(p=>[p.id,p.dose])) : null;
+      for(const p of PT){
+        const sp = spec(p); if(!sp) continue;
+        if(p.mid && sd==='R') continue;
+        if(sp.need>2 && !(act && act.has(p.id))) continue;   // 不自动选择的点（额肌、翼内肌）只在表中列出
+        s += pt(p, sd, opt.all || (act && act.has(p.id)), act && act.get(p.id), false);
+      }
+    } else {
+      const hs = opt.all ? (opt.hsShow ? HS : []) : (opt.res ? opt.res[sd].filter(p=>p.hs) : []);
+      for(const p of hs) s += pt(p, sd, true, p.dose, true);
+    }
+  }
+  return s + `</svg>`;
+}
+
+// ===== 助手 =====
+function seg(name, opts, val){
+  return `<span class="seg" role="radiogroup">` + opts.map(([v,t],i)=>{
+    const id = `${name}-${i}`;
+    return `<input type="radio" name="${name}" id="${id}" value="${v}"${String(v)===String(val)?' checked':''}><label for="${id}">${t}</label>`;
+  }).join('') + `</span>`;
+}
+const SIDE_OPTS = [['L','左侧'],['R','右侧'],['B','双侧']];
+const LV = [[0,'无'],[1,'轻'],[2,'明显']];
+function buildPat(){
+  const M = isM(), B = st.side==='B';
+  let h = '';
+  if(M) h += `<div class="prow"><span><span class="pn">注射侧</span><span class="pe">Meige 综合征为双侧同步，默认两侧对称注射；两侧轻重不同时在结果中手动增减</span></span><span class="tagm">双侧对称</span></div>`;
+  else h += `<div class="prow"><span><span class="pn">患侧</span><span class="pe">双侧：两侧抽动不同步，分别评估</span></span>${seg('side',SIDE_OPTS,st.side)}</div>`;
+  h += `<div class="prow"><span><span class="pn">治疗阶段</span><span class="pe">疗效不足：上次注射 2 周后改善不明显或维持 &lt; 8 周</span></span>${seg('stage',[['first','首次'],['good','复治·疗效好'],['insuff','复治·疗效不足']],st.stage)}</div>`;
+  h += `<div class="prow"><span><span class="pn">配制浓度</span><span class="pe">咀嚼肌剂量大，可另配 5 U / 0.1 mL 以减少体积</span></span><select id="conc" aria-label="配制浓度"><option value="2.5"${st.conc===2.5?' selected':''}>2.5 U / 0.1 mL</option><option value="5"${st.conc===5?' selected':''}>5 U / 0.1 mL</option></select></div>`;
+  if(M){
+    h += `<h3 style="margin-top:6px">受累部位（两侧相同）</h3>`;
+    for(const r of RM) h += `<div class="prow"><span><span class="pn">${r.n}</span><span class="pe">${r.e}</span></span>${seg('msev-'+r.k,LV,st.msev[r.k])}</div>`;
+  } else {
+    h += `<h3 style="margin-top:6px">受累部位${B?'（左右分别选择）':`（${SN[st.side]}侧）`}</h3>`;
+    for(const r of R){
+      const ctl = B
+        ? `<span class="dual"><span><span class="sl">左</span>${seg('sev-L-'+r.k,LV,st.sev.L[r.k])}</span><span><span class="sl">右</span>${seg('sev-R-'+r.k,LV,st.sev.R[r.k])}</span></span>`
+        : seg(`sev-${st.side}-${r.k}`,LV,st.sev[st.side][r.k]);
+      h += `<div class="prow"><span><span class="pn">${r.n}</span><span class="pe">${r.e}</span></span>${ctl}</div>`;
+    }
+  }
+  h += `<h3 style="margin-top:6px">既往情况与选项</h3><div class="cks">`;
+  h += `<label><input type="checkbox" id="adv-ptosis"${st.adv.ptosis?' checked':''}>既往上睑下垂</label>`;
+  h += `<label><input type="checkbox" id="adv-dry"${st.adv.dry?' checked':''}>眼干 / 闭眼不全</label>`;
+  if(M) h += `<label><input type="checkbox" id="adv-dysph"${st.adv.dysph?' checked':''}>既往吞咽困难 / 咀嚼无力</label>`;
+  else {
+    h += `<label><input type="checkbox" id="adv-droop"${st.adv.droop?' checked':''}>既往口角下垂 / 面部不对称</label>`;
+    if(!B) h += `<label><input type="checkbox" id="opt-hs"${st.hs?' checked':''}>健侧对称注射</label>`;
+  }
+  h += `</div>`;
+  document.getElementById('pat').innerHTML = h;
+}
+function setSide(v){ st.side = v; buildPat(); syncSide(); renderAll(); }
+function setDz(v){
+  st.dz = v; document.body.dataset.dz = v;
+  buildPat(); syncSide(); syncDz(); buildTable(); buildRx(); renderAll();
+}
+function li(p, dose){
+  const n = `<span class="pno${p.hs?' hs':''}">${p.id}</span>`;
+  const notes = (p.notes||[]).map(x=>`<span class="src">⚠ ${x}</span>`).join('');
+  const split = p.pts ? `<span class="src">${p.pts}</span>` : '';
+  return `<li><span>${n}${p.n}</span><span class="num">${fmt(dose)} U<span class="ml">${vol(dose)} mL</span></span><span class="src">${p.loc}</span>${split}${notes}</li>`;
+}
+function render(){
+  const res = compute(), M = isM(), Bm = M || st.side==='B';
+  const A = Bm ? 'L' : st.side, Bs = other(A);
+  const sum = sd => res[sd].reduce((a,p)=>a+p.dose,0);
+  const sA = sum(A), sB = sum(Bs), tot = sA+sB;
+  document.getElementById('tA').textContent = Bm ? '左侧' : `患侧（${SN[A]}）`;
+  document.getElementById('tB').textContent = Bm ? '右侧' : `健侧（${SN[Bs]}，可选）`;
+  document.getElementById('listA').innerHTML = res[A].length ? res[A].map(p=>li(p,p.dose)).join('') : `<li class="empty">未选择受累部位</li>`;
+  document.getElementById('listB').innerHTML = res[Bs].length ? res[Bs].map(p=>li(p,p.dose)).join('') : `<li class="empty">${Bm?'未选择受累部位':'未选择（仅明显不对称时使用）'}</li>`;
+  document.getElementById('sumA').textContent = fmt(sA)+' U';
+  document.getElementById('sumB').textContent = sB ? fmt(sB)+' U' : '';
+  document.getElementById('tot').textContent = fmt(tot);
+  document.getElementById('dys').textContent = tot ? `≈ 吉适 ${fmt(tot*2.5)}–${fmt(tot*3)} U` : '';
+  document.getElementById('face4').innerHTML = faceSVG({res});
+  const w = [];
+  if(M){
+    const eye = sv('lid')+sv('orb')+sv('glab') > 0;
+    if(tot > 200) w.push(['dg','总量超过 200 U：文献中单次超过 200 U 的情况少见；保妥适说明书规定眼睑痉挛 30 天内累积剂量不超过 200 U。请复核。']);
+    else if(st.stage==='first' && tot > 150) w.push(['','首次总量偏高：Meige 综合征首次宜从较低剂量开始，眼部与口下颌部可先保守，2 周后评估再调整。']);
+    if(eye) w.push(['','额肌一般不注射：患者常靠额肌抬眉辅助睁眼，额肌无力会加重睁眼困难；仅额肌本身明显痉挛时慎重小剂量注射（见第 4 节对照表点 8）。合并眼睑开启失用时，睑板前、近睑缘的点更有效。']);
+    if(sv('close')>0) w.push(['','咬肌在下颌角上方的下 1/2 肌腹分 2–3 点注射，避开后缘（腮腺覆盖，误注致口干）和前缘浅层的笑肌；颞肌在颞窝内分 2–3 点，触摸颞浅动脉后避开。过量可致咀嚼无力。']);
+    if(sv('open')>0) w.push(['dg','翼外肌位置深，须在肌电图引导下注射（27G 肌电图针，口外经乙状切迹约 15° 向上，或口内入路）。二腹肌前腹及颏下注射剂量偏大易致吞咽困难。']);
+    if(sv('open')>0 && sv('neck')>0) w.push(['dg','张口肌群与颈阔肌同次注射，吞咽困难风险叠加；合并颈部肌张力障碍需同时注射胸锁乳突肌时，宜分次进行。']);
+    if(sv('peri')===2) w.push(['','双侧口轮匝肌注射易致流涎、构音障碍，每点 ≤ 1.25 U。']);
+  } else if(st.side==='B'){
+    w.push(['','双侧面肌痉挛罕见：两侧多先后起病、抽动不同步、轻重不同。请与眼睑痉挛 / Meige 综合征（双侧同步收缩）鉴别，MRI 评估双侧面神经根出脑区。']);
+    if(sA > 50 || sB > 50 || tot > 80) w.push(['dg','单侧超过约 50 U 或双侧合计超过约 80 U，请复核。']);
+    else if(st.stage==='first' && tot > 40) w.push(['','双侧首次合计偏高：两侧均从低剂量开始，2 周后分别评估。']);
+    const lowerOf = sd => ['cheek','mouth','lip','chin','neck'].some(k=>st.sev[sd][k]>0);
+    if(lowerOf('L') && lowerOf('R')) w.push(['dg','两侧下面部同时注射会叠加进食、饮水、说话困难和流涎的风险。首次建议下面部只注射较重一侧，另一侧 2 周后或下次再处理；两侧口轮匝肌不要同次注射。']);
+    if(st.sev.L.lid>0 && st.sev.R.lid>0) w.push(['','两侧眼周同次注射时，双侧上睑下垂、闭眼不全的风险叠加：首次两侧均用低剂量，注意双眼角膜保护。']);
+  } else {
+    if(tot > 50) w.push(['dg','总量超过常用单次上限（约 50 U），请复核。']);
+    else if(st.stage==='first' && tot > 25) w.push(['','首次总量偏高，建议从更低剂量开始，2 周后评估。']);
+  }
+  if(!M){
+    if(sidesOn().some(sd=>st.sev[sd].lid===0 && st.sev[sd].orb===0 && res[sd].length)) w.push(['','有一侧眼周未受累：典型面肌痉挛多始于眼轮匝肌，请复核诊断（功能性面肌痉挛、面瘫后联动等）。']);
+    const lower = ['cheek','mouth','lip','chin','neck'].some(k=>sv(k)>0);
+    if(st.stage==='first' && lower) w.push(['','随机交叉试验显示单纯眼周注射疗效不劣于"眼周 + 下面部"，且无口角下垂。下面部抽动不明显者，首次可只注射眼周。']);
+    if(sv('lip')>0) w.push(['','口轮匝肌注射易致流涎、吹气漏气，单点 ≤ 1.25 U。']);
+    if(sv('brow')>0 || sv('orb')===2) w.push(['','防飞眉：额肌须包含外侧点（外眦垂线附近、眉上 ≥ 2 cm）；眉外侧眶部点打在眶缘水平、≤ 2.5 U。']);
+    if(sv('cheek')>0 || sv('orb')===2) w.push(['','防鼻唇沟不对称：瞳孔中线内侧中面部不注射；颧大肌近起点、从 1.25 U 起；术前拍摄微笑照留作对照。']);
+    if(st.adv.droop) w.push(['',`既往口角下垂：已减少颧肌、笑肌、降口角肌剂量并去掉颧小肌与下睑眶部外下点${st.side==='B'?'':'；明显不对称时可考虑健侧对称注射'}。`]);
+    if(st.side!=='B' && st.hs) w.push(['','健侧注射为美容平衡用途，仅在患侧注射后明显不对称时使用，每点 1.25 U。']);
+  }
+  if(sv('neck')>0) w.push(['','颈阔肌须捏起后浅注，勿深注（吞咽不适、颈外静脉）。']);
+  if(sv('lid')>0 || sv('orb')>0) w.push(['','防上睑下垂与眼袋青紫：上睑避开中央、睑板前浅注成皮丘、每点 ≤ 0.1 mL；注射前冰敷，32G 短针，拔针即压迫 2–3 分钟，不揉。']);
+  if(st.adv.ptosis) w.push(['dg','既往上睑下垂：上睑内侧减量并贴近睑缘，避开上睑中央；皱眉肌点距眶上缘 ≥ 1 cm。']);
+  if(M && st.adv.dysph) w.push(['dg','既往吞咽困难：已去掉二腹肌前腹和下方颈阔肌点，翼外肌、上方颈阔肌减量；必要时请吞咽评估。']);
+  document.getElementById('warns').innerHTML = w.map(([c,t])=>`<div class="callout${c?' '+c:''}">${t}</div>`).join('');
+  // 记录表：左右两列；健侧对称点记在对应肌肉行；中线点记在左列
+  const HREF = {H1:10, H2:13};
+  const cell = sd => { const m = new Map(res[sd].map(p=>[p.hs?HREF[p.id]:p.id, p])); return id => m.get(id); };
+  const cL = cell('L'), cR = cell('R');
+  const fmtC = p => p ? `${fmt(p.dose)}<span class="ml">${vol(p.dose)}</span>${p.hs?'<span class="ml">健侧</span>':''}${p.mid?'<span class="ml">中线</span>':''}` : '';
+  const sL = sum('L'), sR = sum('R');
+  document.getElementById('recBody').innerHTML = PT.filter(p=>{ const sp=spec(p); return sp && sp.need<=2; }).map(p=>{
+    const l = cL(p.id), r = cR(p.id);
+    return `<tr><td><span class="pno${l||r?'':' o'}">${p.id}</span></td><td>${p.n}</td><td class="n">${fmtC(l)}</td><td class="n">${fmtC(r)}</td><td><input aria-label="${p.n}备注"></td></tr>`;
+  }).join('') + `<tr><td></td><td><b>合计</b>${tot?`<span class="ml">共 ${fmt(tot)} U</span>`:''}</td><td class="n"><b>${sL?fmt(sL):''}</b></td><td class="n"><b>${sR?fmt(sR):''}</b></td><td></td></tr>`;
+}
+
+// ===== 第 4 节：点位与剂量对照表 =====
+function buildTable(){
+  const M = isM();
+  document.getElementById('ptTable').innerHTML = PT.map(p=>{
+    const h = p.h===false ? null : p, m = p.mg;
+    const on = M ? m : h;
+    const hc = h ? `${rng(h)}<span class="ml">≤ ${fmt(h.mx)}</span>` : '<span class="na-x">—</span>';
+    const mc = m ? `${rng(m)}<span class="ml">≤ ${fmt(m.mx)}</span>${m.pts?`<br><span class="ml">${m.pts}</span>`:''}` : '<span class="na-x">—</span>';
+    const tag = h && m ? '<span class="tg2 both">两者</span>' : h ? '<span class="tg2 hfs">面肌痉挛</span>' : '<span class="tg2 meige">Meige</span>';
+    return `<tr class="${on?'':'na'}"><td><span class="pno">${p.id}</span></td><td><b>${p.mu}</b> ${tag}<br><span class="sub">${p.n}</span></td><td>${(M&&m&&m.loc)||p.loc}</td><td>${(M&&m&&m.dep)||p.dep}</td><td class="n${M?'':' cur'}">${hc}</td><td class="n${M?' cur':''}">${mc}</td><td class="risk">${(M&&m&&m.risk)||p.risk}</td></tr>`;
+  }).join('');
+}
+function renderStatic(){
+  document.getElementById('face10').innerHTML = faceSVG({all:true, hsShow:true});
+}
+function syncSide(){
+  const r = document.querySelector(`input[name="side"][value="${st.side}"]`); if(r) r.checked = true;
+}
+function syncDz(){
+  for(const el of document.querySelectorAll('.dzsw')) el.innerHTML = seg('dz-'+el.dataset.k,[['hfs','面肌痉挛'],['meige','Meige 综合征']],st.dz);
+}
+function renderAll(){ render(); renderStatic(); }
+
+// ===== 第 7 节：处方模板 =====
+const RX = [
+ {dz:'hfs',t:'A 眼周起始型', d:'首次治疗；抽动局限于眼周，或下面部轻微', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5]]},
+ {dz:'hfs',t:'B 典型型', d:'眼周 + 颊部 + 口角抽动明显', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[10,2.5],[12,1.25],[13,2.5]]},
+ {dz:'hfs',t:'C 广泛型', d:'合并额部、颏部、颈阔肌受累（复治、既往耐受良好）', p:[[1,2.5],[2,2.5],[3,2.5],[5,2.5],[8,2.5],[10,2.5],[12,1.25],[13,2.5],[16,2.5],[17,2.5],[18,2.5]]},
+ {dz:'hfs',t:'D 不良反应调整型', d:'既往上睑下垂 + 口角下垂；以外侧和眶部补足眼周剂量，下面部减量，必要时健侧平衡', p:[[1,1.25],[2,2.5],[3,2.5],[5,2.5],[6,2.5],[10,1.25],[13,1.25],['H1',1.25]]},
+ {dz:'hfs',t:'E 双侧型（首次）', both:true, d:'双侧面肌痉挛：两侧眼周同次注射、各用低剂量；下面部首次只处理较重一侧（按 A–C 选点），另一侧 2 周后评估再定', p:[[1,1.25],[2,2.5],[3,2.5],[5,2.5]]},
+ ...MRX
+];
+function buildRx(){
+  const all = [...PT, ...HS];
+  document.getElementById('rx').innerHTML = RX.filter(r=>r.dz===st.dz).map(r=>{
+    let sum = 0;
+    const rows = r.p.map(([id,d,mode])=>{ const p = all.find(x=>x.id===id);
+      const each = r.both && mode!=='mid' && !p.mid; sum += each ? d*2 : d;
+      const k = each ? '各 ' : (p.mid ? '中线 ' : '');
+      return `<tr><td><span class="pno${p.hs?' hs':''}">${id}</span>${p.n}</td><td class="n">${k}${fmt(d)} U</td><td class="n">${(d/2.5*0.1).toFixed(2)} mL</td></tr>`; }).join('');
+    const tail = r.both ? `<span>合计（双侧）</span><span class="num">${fmt(sum)} U</span>` : `<span>合计</span><span class="num">${fmt(sum)} U</span>`;
+    return `<div class="box"><h3>${r.t}</h3><p class="sub">${r.d}</p><table><tbody>${rows}</tbody></table><div class="sum">${tail}</div></div>`;
+  }).join('');
+}
+
+// ===== 初始化 =====
+document.body.dataset.dz = st.dz;
+syncDz(); buildPat(); buildTable(); buildRx(); syncSide(); renderAll();
+document.getElementById('pat').addEventListener('change', e=>{
+  const t = e.target;
+  if(t.name==='side') return setSide(t.value);
+  if(t.name==='stage') st.stage = t.value;
+  else if(t.name && t.name.startsWith('msev-')) st.msev[t.name.slice(5)] = +t.value;
+  else if(t.name && t.name.startsWith('sev-')){ const [, sd, k] = t.name.split('-'); st.sev[sd][k] = +t.value; }
+  else if(t.id==='conc') st.conc = +t.value;
+  else if(t.id && t.id.startsWith('adv-')) st.adv[t.id.slice(4)] = t.checked;
+  else if(t.id==='opt-hs') st.hs = t.checked;
+  renderAll();
+});
+document.addEventListener('change', e=>{ if(e.target.name && e.target.name.startsWith('dz-')) setDz(e.target.value); });
+</script>
+
+</body>
+</html>
