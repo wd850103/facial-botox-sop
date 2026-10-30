@@ -1,8 +1,10 @@
-# 面肌痉挛与 Meige 综合征 A 型肉毒毒素注射标准方案
+# 面部肉毒素注射
 
-## 👉 [点击打开在线版](https://wd850103.github.io/hfs-meige-botox-sop/)
+面肌痉挛（单侧、双侧）与 Meige 综合征 A 型肉毒毒素注射标准方案
 
-网址：https://wd850103.github.io/hfs-meige-botox-sop/ （手机、电脑浏览器均可直接使用）
+## 👉 [点击打开在线版](https://wd850103.github.io/facial-botox-sop/)
+
+网址：https://wd850103.github.io/facial-botox-sop/ （手机、电脑浏览器均可直接使用）
 
 **离线使用：**点右上角绿色 **Code → Download ZIP**，解压后双击 `index.html` 即可（单个网页，无需联网和服务器）。
 
