@@ -289,6 +289,40 @@ tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--mu
 .face4 svg{max-width:360px}
 .out .zkey{font-size:12px}
 .h1sub{font-size:15px;color:var(--muted);margin-top:-6px}
+
+/* 真实底图的面部点位图（白底插图，颜色固定） */
+.face{background:#fff}
+.face svg text{font-family:var(--f-body)}
+.face4 svg{max-width:470px}
+.fo-ln{fill:none;stroke:#9aa3a6;stroke-width:2.5}
+.face .fc-side{fill:#5b6970;font-size:24px}
+.face .pt circle{fill:#fff;stroke:#5f6f75;stroke-width:2}
+.face .pt text{font-family:var(--f-mono);font-size:15px;font-weight:700;fill:#43525a}
+.face .pt.on circle{fill:#0b7a85;stroke:#fff;stroke-width:2.5}
+.face .pt.on text{fill:#fff}
+.face .pt.hs.on circle{fill:#c27c0e;stroke:#fff}
+.face .pt.dim{opacity:.6}
+.face .pd{font-size:22px;fill:#07575f;stroke:#fff;stroke-width:6px}
+.face .pd.hs{fill:#8a5300}
+.face .zone{fill:#d6453d;fill-opacity:.12;stroke:#d6453d;stroke-width:2.2;stroke-dasharray:7 5;stroke-opacity:1}
+.lm-ln{fill:none;stroke:#2d55d6;stroke-width:2.6;stroke-opacity:.85;stroke-linejoin:round}
+.lm-t{fill:#1f3fa8;font-size:19px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:5px}
+.lm-t.a{fill:#c0392b}
+.mk-a{fill:#d6453d;stroke:#fff;stroke-width:2}
+.mk-n{fill:#fff;stroke:#2d55d6;stroke-width:3}
+svg.nolm .lmk{display:none}
+svg.nozn .zn{display:none}
+.cr{font-size:11.5px;color:var(--muted);line-height:1.55;max-width:none}
+/* Sobotta 图 */
+.sob{margin:0;display:grid;gap:6px}
+.sob .pbox{border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.sob svg{display:block;width:100%;max-width:820px;margin:0 auto}
+.sob figcaption{font-size:12.5px;color:var(--muted);line-height:1.65}
+.sob figcaption b{color:var(--fg)}
+.sb-out rect{fill:#fff}
+.sb-in rect{fill:#fff;fill-opacity:.9}
+.sb-blank rect{fill:#b94a40;fill-opacity:.96}
+.sb-t{font-family:var(--f-body);font-size:22px;font-weight:700;fill:#1c1c1c;text-anchor:middle;dominant-baseline:central}
 </style>
 </head>
 <body>
@@ -528,8 +562,10 @@ tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--mu
     <div class="pat" id="pat"></div>
     <div class="out">
       <div style="display:grid;gap:12px;min-width:0">
+        <div class="ctrl"><button type="button" class="btn" id="lmBtn" aria-pressed="true">体表标志线</button><button type="button" class="btn" id="znBtn" aria-pressed="true">禁注区</button></div>
         <div class="face face4" id="face4"></div>
-        <div class="zkey"><span class="zsw"></span><span><b>红色虚线区 = 禁注 / 慎注区</b>：上睑中央（防上睑下垂）；内眦与下睑内侧深层（防复视、溢泪、青紫）；眉上 2 cm 以内（防眉下垂）；瞳孔中线内侧中面部（防鼻唇沟不对称）。<span class="only-meige">Meige 综合征另将<b>额肌</b>整体列为慎注区（睁眼依赖额肌）。</span>翼外肌为深部肌肉，以虚线圈表示，须引导下注射。</span></div>
+        <p class="cr">底图：Braus H.《Anatomie des Menschen》第 1 卷（1921），公有领域，经 Wikimedia Commons；已裁切，图中细虚线为原书标注引线，红线为原书口周肌走行示意。额部与颈部轮廓、注射点、体表标志线与禁注区为本方案添加，位置为示意。</p>
+        <div class="zkey"><span class="zsw"></span><span><b>蓝线 = 体表标志</b>（瞳孔中线、外眦垂线、眶缘、颧骨—颧弓、鼻唇沟、口角垂线、下颌缘、咬肌前缘、腮腺导管线）；红点 = 面动脉越过下颌缘处；蓝圈 = 颏孔、眶上切迹。<b>红色虚线区 = 禁注 / 慎注区</b>：上睑中央（防上睑下垂）；内眦与下睑内侧深层（防复视、溢泪、青紫）；眉上 2 cm 以内（防眉下垂）；瞳孔中线内侧中面部（防鼻唇沟不对称）。<span class="only-meige">Meige 综合征另将<b>额肌</b>整体列为慎注区（睁眼依赖额肌）。</span>翼外肌为深部肌肉，以虚线圈表示，须引导下注射。</span></div>
         <div style="display:grid;gap:12px;min-width:0">
           <div class="sides">
             <div class="side"><h3><span id="tA">患侧</span><span class="num" id="sumA"></span></h3><ul id="listA"></ul></div>
@@ -554,7 +590,11 @@ tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--mu
 <section id="s5">
   <header><span class="sn">05</span><h2>靶肌识别与注射层次</h2></header>
   <p>面部表情肌按<b>体表标志 + 动作测试</b>定位，不需要超声引导（Meige 的翼外肌等深部咀嚼肌例外，见下）。面肌痉挛只累及<b>面神经</b>支配的表情肌；咀嚼肌由<b>三叉神经</b>支配，只属于 Meige 综合征（口下颌肌张力障碍）的靶肌——"面肌痉挛"患者若咬肌、颞肌抽动，应重新考虑诊断。注射前让患者逐一做下表中的动作，同时观察自发抽动的牵拉方向，确认是哪块肌肉在抽，再选择对应的注射点。</p>
-  <div class="tw"><table class="wide">
+    <figure class="sob">
+    <div class="pbox"><svg viewBox="0 0 1200 1047" role="img" aria-label="面颈部浅层肌（Sobotta 图谱），中文标注"><image href="img/sobotta260.jpg" width="1200" height="1047"/><g class="sbl"><g class="sb-out"><rect x="18" y="379" width="250" height="32" rx="6"/><text class="sb-t" x="143" y="395">睑内侧韧带</text></g><g class="sb-out"><rect x="179" y="412" width="100" height="32" rx="6"/><text class="sb-t" x="229" y="428">降眉间肌</text></g><g class="sb-out"><rect x="17" y="511" width="100" height="112" rx="6"/><text class="sb-t" x="67" y="554">提上唇肌</text><text class="sb-t" x="67" y="580">三个头</text></g><g class="sb-out"><rect x="121" y="472" width="92" height="48" rx="6"/><text class="sb-t" x="167" y="496">内眦头</text></g><g class="sb-out"><rect x="136" y="527" width="78" height="72" rx="6"/><text class="sb-t" x="175" y="563">眶下头</text></g><g class="sb-out"><rect x="140" y="605" width="64" height="70" rx="6"/><text class="sb-t" x="172" y="640">颧头</text></g><g class="sb-out"><rect x="242" y="913" width="186" height="32" rx="6"/><text class="sb-t" x="335" y="929">颏横肌</text></g><g class="sb-out"><rect x="1067" y="490" width="108" height="32" rx="6"/><text class="sb-t" x="1121" y="506">枕肌</text></g><g class="sb-in"><rect x="461" y="174" width="112" height="34" rx="6"/><text class="sb-t" x="517" y="191">额肌</text></g><g class="sb-in" transform="rotate(28 880 122)"><rect x="780" y="106" width="200" height="32" rx="6"/><text class="sb-t" x="880" y="122">帽状腱膜</text></g><g class="sb-in"><rect x="855" y="222" width="126" height="62" rx="6"/><text class="sb-t" x="918" y="253">耳上肌</text></g><g class="sb-in"><rect x="711" y="295" width="130" height="60" rx="6"/><text class="sb-t" x="776" y="325">耳前肌</text></g><g class="sb-in"><rect x="459" y="329" width="76" height="38" rx="6"/><text class="sb-t" x="497" y="348">睑部</text></g><g class="sb-in" transform="rotate(-28 562 441)"><rect x="478" y="413" width="168" height="56" rx="6"/><text class="sb-t" x="562" y="441">眼轮匝肌眶部</text></g><g class="sb-in" transform="rotate(-62 330 452)"><rect x="297" y="436" width="66" height="32" rx="6"/><text class="sb-t" x="330" y="452">鼻肌</text></g><g class="sb-in"><rect x="376" y="551" width="100" height="32" rx="6"/><text class="sb-t" x="426" y="567">提上唇肌</text></g><g class="sb-blank"><rect x="357" y="594" width="46" height="38" rx="6"/></g><g class="sb-in"><rect x="405" y="609" width="100" height="32" rx="6"/><text class="sb-t" x="455" y="625">提口角肌</text></g><g class="sb-in" transform="rotate(-40 572 590)"><rect x="508" y="574" width="128" height="32" rx="6"/><text class="sb-t" x="572" y="590">颧大肌</text></g><g class="sb-in"><rect x="679" y="545" width="170" height="100" rx="6"/><text class="sb-t" x="764" y="582">腮腺咬肌筋膜</text><text class="sb-t" x="764" y="608">（深面为咬肌）</text></g><g class="sb-in" transform="rotate(62 420 683)"><rect x="370" y="667" width="100" height="32" rx="6"/><text class="sb-t" x="420" y="683">口轮匝肌</text></g><g class="sb-in"><rect x="502" y="733" width="86" height="32" rx="6"/><text class="sb-t" x="545" y="749">笑肌</text></g><g class="sb-in"><rect x="390" y="799" width="100" height="54" rx="6"/><text class="sb-t" x="440" y="826">降下唇肌</text></g><g class="sb-in"><rect x="500" y="808" width="100" height="40" rx="6"/><text class="sb-t" x="550" y="828">降口角肌</text></g><g class="sb-in" transform="rotate(-55 848 756)"><rect x="734" y="740" width="228" height="32" rx="6"/><text class="sb-t" x="848" y="756">胸锁乳突肌</text></g><g class="sb-in"><rect x="609" y="893" width="116" height="32" rx="6"/><text class="sb-t" x="667" y="909">颈阔肌</text></g></g></svg></div>
+    <figcaption><b>面颈部浅层肌（左前斜位）</b>　先在此图上认清各表情肌的位置、走行和相互覆盖关系，再对照下表的动作测试与体表标志定位。"提上唇肌三个头"为旧命名：内眦头 = 提上唇鼻翼肌，眶下头 = 提上唇肌，颧头 = 颧小肌。咬肌位于腮腺咬肌筋膜深面。<br><span class="cr">引自 Sobotta J. Atlas and Text-book of Human Anatomy（1909 年英文版），插图 K. Hajek、A. Schmitson，公有领域，经 Wikimedia Commons；已缩小并以中文标注覆盖原英文标注。</span></figcaption>
+  </figure>
+<div class="tw"><table class="wide">
     <thead><tr><th>肌肉</th><th>支配神经</th><th>主要作用</th><th>动作测试</th><th>面肌痉挛</th><th>Meige 综合征</th><th>注射点</th></tr></thead>
     <tbody>
       <tr class="grp"><td colspan="7">表情肌（面神经）</td></tr>
@@ -577,6 +617,29 @@ tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--mu
       <tr><td><b>翼外肌</b></td><td>三叉神经下颌支</td><td>张口、前伸、使下颌偏向对侧</td><td>张口、前伸下颌</td><td><span class="mk x">✕</span></td><td><span class="mk y">●</span>张口型、偏颌型（引导下）</td><td class="n">M4</td></tr>
       <tr><td><b>二腹肌前腹</b></td><td>三叉神经（下颌舌骨肌神经）</td><td>降下颌、张口</td><td>抗阻张口时触摸颏下</td><td><span class="mk x">✕</span></td><td><span class="mk o">○</span>张口型补充</td><td class="n">M5</td></tr>
       <tr><td><b>颏舌肌（舌）</b></td><td>舌下神经</td><td>伸舌</td><td>伸舌</td><td><span class="mk x">✕</span></td><td><span class="mk x">✕</span>不常规（易致吞咽困难）</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <h3>体表标志与定位方法</h3>
+  <p>以下标志均可在注射前用触诊或目测确定，并用记号笔画出；第 4 节点位图中的蓝线即为这些标志。</p>
+  <div class="tw"><table class="wide">
+    <thead><tr><th>体表标志</th><th>如何确定</th><th>用于定位的肌肉 / 注射点</th></tr></thead>
+    <tbody>
+      <tr><td><b>瞳孔中线</b></td><td>患者平视前方，经瞳孔中点的垂线</td><td>上睑内、外两点的分界（两侧各 5 mm 内为上睑中央禁注区）；眶上切迹、颏孔大致位于此线上；<b>中面部注射只在此线外侧</b>（防鼻唇沟不对称）</td></tr>
+      <tr><td><b>外眦垂线</b></td><td>经外眦的垂线</td><td>颧大肌点（10）在此线外侧；额肌外侧点（8）在此线附近；外眦点（5）在外眦外 1 cm</td></tr>
+      <tr><td><b>睑缘</b></td><td>上、下睑的睫毛根部</td><td>睑板前点（1–4）在睑缘外 2–3 mm</td></tr>
+      <tr><td><b>眶缘</b></td><td>沿眉下、外眦外、下睑下方触摸骨性眶缘</td><td>皱眉肌（9）、眉部点距眶上缘 ≥ 1 cm；外眦点在眶外缘外侧；下睑眶部点（7）在眶下缘水平、偏外</td></tr>
+      <tr><td><b>眶上切迹</b></td><td>眶上缘内、中 1/3 交界处可触及的小凹陷</td><td>眶上神经血管穿出处，皱眉肌注射时针尖稍偏外上</td></tr>
+      <tr><td><b>眉（眉头、眉峰、眉尾）</b></td><td>目测</td><td>额肌点距眉 ≥ 2 cm；飞眉补注在眉峰上方 2–3 cm；眉外侧点（6）在眉尾下方眶缘水平</td></tr>
+      <tr><td><b>颧骨体与颧弓</b></td><td>面颊最突出的骨点，向后沿颧弓触摸至耳屏前</td><td>颧大肌起点（10）；翼外肌口外入路在颧弓下缘、髁突前（M4）</td></tr>
+      <tr><td><b>鼻唇沟</b></td><td>鼻翼外侧斜向口角外侧的皮肤沟</td><td>其上部内侧为提上唇肌群，<b>不注射</b>；注射前后对比两侧深度</td></tr>
+      <tr><td><b>口角（蜗轴）</b>与<b>口角垂线</b></td><td>口角外侧约 1 cm 为多块肌肉汇聚的蜗轴；经口角作垂线</td><td>笑肌（12）在口角外 1.5–2 cm 水平；降口角肌（13）在口角垂线外侧；颏肌（16）在其内侧</td></tr>
+      <tr><td><b>颏唇沟与颏突</b></td><td>下唇下方的横沟及其下的骨性突起</td><td>颏肌（16）在颏突下 1/3、中线旁 0.5–1 cm；位置过高会累及口轮匝肌</td></tr>
+      <tr><td><b>下颌缘与下颌角</b></td><td>沿下颌骨下缘向后触摸至下颌角</td><td>降口角肌（13）在下颌缘上 1 cm；咬肌（M2）在下颌角上方；颈阔肌（17–18）在下颌缘下约 2 cm</td></tr>
+      <tr><td><b>咬肌前缘与面动脉</b></td><td>嘱患者咬紧牙，触到咬肌隆起的前界；其与下颌缘交点处可触及面动脉搏动</td><td>咬肌（M2）在前缘之后的肌腹；降口角肌点不要靠近面动脉搏动处</td></tr>
+      <tr><td><b>耳屏—口角连线</b></td><td>耳屏与口角的连线，中 1/3 为腮腺导管的体表投影</td><td>咬肌注射避开此线；咬肌后缘有腮腺覆盖（误注致口干）</td></tr>
+      <tr><td><b>颞窝与颞浅动脉</b></td><td>眶外缘后方、颧弓上方的凹陷，咬牙时隆起；耳屏前上方可触及颞浅动脉搏动</td><td>颞肌（M3）在颞窝内，先触摸并避开颞浅动脉</td></tr>
+      <tr><td><b>髁突与乙状切迹</b></td><td>耳屏前方，张闭口时可触及髁突滑动；其前方、颧弓下的凹陷为乙状切迹</td><td>翼外肌（M4）口外入路进针处（须肌电图引导）</td></tr>
+      <tr><td><b>颏下</b></td><td>下颌骨下缘内侧、舌骨上方的颏下区</td><td>二腹肌前腹（M5）在中线旁约 1 cm，抗阻张口时可触及</td></tr>
     </tbody>
   </table></div>
   <div class="cols">
@@ -809,34 +872,34 @@ tr.grp td{background:var(--sunk);font-weight:700;font-size:12.5px;color:var(--mu
 // d: [轻 / 首次低量, 标准, 疗效不足加量]；mx: 单点上限；need: 1 = 轻即注射，2 = 明显才注射
 // o: 剂量文字偏移 [dx, dy, 对齐]
 const PT = [
- {id:1,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑内侧（睑板前）',x:240,y:176,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑内 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
- {id:2,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑外侧（睑板前）',x:272,y:177,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑外 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
- {id:3,r:'lid',need:1,mu:'眼轮匝肌',n:'下睑外侧（睑板前）',x:272,y:211,d:[1.25,2.5,3.75],mx:5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，下睑外 1/3',dep:'皮下 1–2 mm',risk:'闭眼不全、眼干；深注 → 眼袋青紫',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
- {id:4,r:'lid',need:2,mu:'眼轮匝肌',n:'下睑内侧（睑板前）',x:240,y:211,d:[1.25,1.25,2.5],mx:2.5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，泪小点外侧，只做浅注',dep:'皮下 1 mm',risk:'溢泪；深注 → 下斜肌，复视',mg:{r:'lid',need:2,d:[1.25,2.5,2.5],mx:2.5}},
- {id:5,r:'orb',need:1,mu:'眼轮匝肌眶部',n:'外眦外侧',x:302,y:195,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦外约 1 cm，眶外缘外侧',dep:'皮下 2 mm',risk:'淤青',mg:{r:'orb',need:1,d:[2.5,2.5,5],mx:5}},
- {id:6,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'眉外侧（眶上外）',x:294,y:161,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'眉外 1/3 下缘、眶上缘外侧（不在眉毛上方）',dep:'皮下 2 mm',risk:'向下弥散 → 上睑下垂；降眉力量减弱 → 飞眉',mg:{r:'orb',need:2,d:[2.5,2.5,5],mx:5}},
- {id:7,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'下睑眶部（外下）',x:298,y:233,d:[1.25,2.5,2.5],mx:2.5,o:[10,4,'start'],loc:'眶下缘外 1/3，眶缘水平、偏外',dep:'皮下 2 mm',risk:'弥散至颧肌 → 口角下垂、鼻唇沟不对称；青紫',mg:{r:'orb',need:2,d:[1.25,2.5,2.5],mx:2.5}},
- {id:8,r:'brow',need:1,mu:'额肌',n:'额肌外侧',x:268,y:114,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦垂线附近、眉上 ≥ 2 cm（须包含外侧纤维）',dep:'2–3 mm',risk:'过低 → 眉下垂；只注内侧 → 飞眉',mg:{r:'glab',need:3,d:[2.5,5,10],mx:20,loc:'仅额肌本身明显痉挛时；眉上 ≥ 2 cm、内外均衡',risk:'睁眼困难加重、眉下垂（患者靠额肌辅助睁眼）'}},
- {id:9,r:'brow',need:2,mu:'皱眉肌',n:'皱眉肌',x:226,y:146,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'眉头上方、眶上缘上约 1 cm',dep:'3–5 mm（肌层）',risk:'位置过低 → 上睑下垂',mg:{r:'glab',need:1,d:[2.5,5,7.5],mx:10}},
- {id:10,r:'cheek',need:1,mu:'颧大肌',n:'颧大肌（近起点）',x:298,y:252,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'颧骨体处近起点（外眦垂线外侧），远离鼻唇沟',dep:'3–6 mm（浅层脂肪深面）',risk:'口角下垂、鼻唇沟不对称',mg:null},
- {id:11,r:'cheek',need:2,mu:'颧小肌',n:'颧小肌',x:268,y:250,d:[1.25,1.25,2.5],mx:2.5,o:[-10,4,'end'],loc:'颧大肌内侧，颧骨前面下方',dep:'3–5 mm',risk:'上唇下垂、鼻唇沟变浅',mg:null},
- {id:12,r:'mouth',need:1,mu:'笑肌',n:'笑肌',x:290,y:322,d:[1.25,1.25,2.5],mx:2.5,o:[10,4,'start'],loc:'口角外侧 1.5–2 cm 水平',dep:'皮下 2–3 mm（很浅）',risk:'口角无力、不对称',mg:null},
- {id:13,r:'mouth',need:1,mu:'降口角肌',n:'降口角肌',x:256,y:393,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘上方约 1 cm、口角垂线外侧',dep:'3–5 mm',risk:'偏内 → 降下唇肌，下唇不对称；外侧有面动脉',mg:{r:'peri',need:1,d:[1.25,2.5,5],mx:5}},
- {id:14,r:'lip',need:1,mu:'口轮匝肌',n:'上唇外侧',x:222,y:314,d:[1.25,1.25,1.25],mx:1.25,o:[0,-12,'middle'],loc:'上唇外 1/3，唇红缘上 3–5 mm',dep:'皮下 2 mm',risk:'流涎、吹气漏气',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
- {id:15,r:'lip',need:2,mu:'口轮匝肌',n:'下唇外侧',x:222,y:352,d:[1.25,1.25,1.25],mx:1.25,o:[0,15,'middle'],loc:'下唇外 1/3，唇红缘下 3–5 mm',dep:'皮下 2 mm',risk:'流涎、发音不清',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
- {id:16,r:'chin',need:1,mu:'颏肌',n:'颏肌',x:216,y:402,d:[2.5,2.5,5],mx:5,o:[0,-12,'middle'],loc:'中线旁 0.5–1 cm，颏突下 1/3',dep:'深注至骨膜上 6–10 mm',risk:'位置过高 → 口唇闭合不全、流涎',mg:{r:'peri',need:1,d:[2.5,2.5,5],mx:5}},
- {id:17,r:'neck',need:1,mu:'颈阔肌',n:'颈阔肌（上）',x:252,y:452,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘下约 2 cm，收缩时出现的条索上',dep:'捏起后皮下浅注',risk:'深注 → 吞咽不适；颈外静脉',mg:{r:'neck',need:1,d:[2.5,2.5,5],mx:5}},
- {id:18,r:'neck',need:2,mu:'颈阔肌',n:'颈阔肌（下）',x:258,y:482,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'同一条索下方 1.5–2 cm',dep:'捏起后皮下浅注',risk:'同上',mg:{r:'neck',need:2,d:[2.5,2.5,5],mx:5}}
- ,{id:'M1',h:false,mid:1,mu:'降眉间肌',n:'降眉间肌（眉间中线）',x:200,y:170,o:[0,-13,'middle'],loc:'两眉头连线中点下方、鼻根上部，中线 1 点',dep:'3–5 mm（肌层）',risk:'弥散 → 上睑下垂（少见）',mg:{r:'glab',need:1,d:[2.5,2.5,5],mx:5}}
- ,{id:'M2',h:false,mu:'咬肌',n:'咬肌',x:298,y:358,o:[11,4,'start'],loc:'咬紧牙时隆起处，下颌角上方的下 1/2 肌腹；避开后缘（腮腺覆盖）',dep:'10–20 mm（深达肌腹）',risk:'咀嚼无力；后缘误入腮腺 → 口干；前缘过浅 → 笑肌，微笑不对称',mg:{r:'close',need:1,d:[20,30,50],mx:50,pts:'每侧分 2–3 点；闭口型首选'}}
- ,{id:'M3',h:false,mu:'颞肌',n:'颞肌',x:322,y:152,o:[11,4,'start'],loc:'颞窝内咬牙时隆起处，眶外缘后方 2–3 cm',dep:'至骨面后稍退针',risk:'颞浅动脉；局部疼痛',mg:{r:'close',need:2,d:[15,20,40],mx:40,pts:'每侧分 2–3 点；偏颌型注射同侧'}}
- ,{id:'M4',h:false,mu:'翼外肌',n:'翼外肌',x:316,y:262,o:[11,4,'start'],loc:'肌电图引导：口外经乙状切迹（颧弓下、髁突前）约 15° 向上进针，或口内入路',dep:'3.5–4 cm（深部，27G 肌电图针）',risk:'须引导定位；咀嚼无力、吞咽不适',mg:{r:'open',need:1,d:[10,15,20],mx:20,pts:'每侧 1 点（引导下）；偏颌型注射对侧'}}
- ,{id:'M5',h:false,mu:'二腹肌前腹',n:'二腹肌前腹',x:214,y:454,o:[-11,4,'end'],loc:'颏下，中线旁约 1 cm',dep:'1–1.5 cm',risk:'吞咽困难（剂量偏大或过深进入下颌舌骨肌、颏舌肌）',mg:{r:'open',need:2,d:[2.5,5,5],mx:5}}
- ,{id:'M6',h:false,mu:'翼内肌',n:'翼内肌',x:284,y:380,o:[11,4,'start'],loc:'下颌角内侧，经下颌下缘向上进针，肌电图引导',dep:'2–3 cm',risk:'吞咽困难；须引导定位',mg:{r:'close',need:3,d:[10,15,20],mx:20,pts:'少用，仅在咬肌 / 颞肌效果不足时'}}
+ {fx:658,fy:272,fo:[0,-30,'middle'],fyR:320,id:1,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑内侧（睑板前）',x:240,y:176,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑内 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {fx:728,fy:270,fo:[0,-30,'middle'],fyR:320,id:2,r:'lid',need:1,mu:'眼轮匝肌',n:'上睑外侧（睑板前）',x:272,y:177,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'睑缘上 2–3 mm，上睑外 1/3 与中 1/3 交界',dep:'皮下 1–2 mm',risk:'偏向中央 → 上睑下垂',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {fx:728,fy:370,fo:[0,34,'middle'],id:3,r:'lid',need:1,mu:'眼轮匝肌',n:'下睑外侧（睑板前）',x:272,y:211,d:[1.25,2.5,3.75],mx:5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，下睑外 1/3',dep:'皮下 1–2 mm',risk:'闭眼不全、眼干；深注 → 眼袋青紫',mg:{r:'lid',need:1,d:[1.25,2.5,5],mx:5}},
+ {fx:658,fy:372,fo:[0,34,'middle'],id:4,r:'lid',need:2,mu:'眼轮匝肌',n:'下睑内侧（睑板前）',x:240,y:211,d:[1.25,1.25,2.5],mx:2.5,o:[0,15,'middle'],loc:'睑缘下 2–3 mm，泪小点外侧，只做浅注',dep:'皮下 1 mm',risk:'溢泪；深注 → 下斜肌，复视',mg:{r:'lid',need:2,d:[1.25,2.5,2.5],mx:2.5}},
+ {fx:852,fy:322,fo:[26,6,'start'],id:5,r:'orb',need:1,mu:'眼轮匝肌眶部',n:'外眦外侧',x:302,y:195,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦外约 1 cm，眶外缘外侧',dep:'皮下 2 mm',risk:'淤青',mg:{r:'orb',need:1,d:[2.5,2.5,5],mx:5}},
+ {fx:832,fy:244,fo:[0,-30,'middle'],id:6,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'眉外侧（眶上外）',x:294,y:161,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'眉外 1/3 下缘、眶上缘外侧（不在眉毛上方）',dep:'皮下 2 mm',risk:'向下弥散 → 上睑下垂；降眉力量减弱 → 飞眉',mg:{r:'orb',need:2,d:[2.5,2.5,5],mx:5}},
+ {fx:805,fy:425,fo:[26,6,'start'],id:7,r:'orb',need:2,mu:'眼轮匝肌眶部',n:'下睑眶部（外下）',x:298,y:233,d:[1.25,2.5,2.5],mx:2.5,o:[10,4,'start'],loc:'眶下缘外 1/3，眶缘水平、偏外',dep:'皮下 2 mm',risk:'弥散至颧肌 → 口角下垂、鼻唇沟不对称；青紫',mg:{r:'orb',need:2,d:[1.25,2.5,2.5],mx:2.5}},
+ {fx:785,fy:68,fo:[26,6,'start'],id:8,r:'brow',need:1,mu:'额肌',n:'额肌外侧',x:268,y:114,d:[2.5,2.5,5],mx:5,o:[10,4,'start'],loc:'外眦垂线附近、眉上 ≥ 2 cm（须包含外侧纤维）',dep:'2–3 mm',risk:'过低 → 眉下垂；只注内侧 → 飞眉',mg:{r:'glab',need:3,d:[2.5,5,10],mx:20,loc:'仅额肌本身明显痉挛时；眉上 ≥ 2 cm、内外均衡',risk:'睁眼困难加重、眉下垂（患者靠额肌辅助睁眼）'}},
+ {fx:605,fy:198,fo:[0,-30,'middle'],id:9,r:'brow',need:2,mu:'皱眉肌',n:'皱眉肌',x:226,y:146,d:[1.25,2.5,3.75],mx:5,o:[0,-12,'middle'],loc:'眉头上方、眶上缘上约 1 cm',dep:'3–5 mm（肌层）',risk:'位置过低 → 上睑下垂',mg:{r:'glab',need:1,d:[2.5,5,7.5],mx:10}},
+ {fx:798,fy:525,fo:[26,6,'start'],id:10,r:'cheek',need:1,mu:'颧大肌',n:'颧大肌（近起点）',x:298,y:252,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'颧骨体处近起点（外眦垂线外侧），远离鼻唇沟',dep:'3–6 mm（浅层脂肪深面）',risk:'口角下垂、鼻唇沟不对称',mg:null},
+ {fx:738,fy:508,fo:[-26,6,'end'],id:11,r:'cheek',need:2,mu:'颧小肌',n:'颧小肌',x:268,y:250,d:[1.25,1.25,2.5],mx:2.5,o:[-10,4,'end'],loc:'颧大肌内侧，颧骨前面下方',dep:'3–5 mm',risk:'上唇下垂、鼻唇沟变浅',mg:null},
+ {fx:722,fy:755,fo:[26,6,'start'],id:12,r:'mouth',need:1,mu:'笑肌',n:'笑肌',x:290,y:322,d:[1.25,1.25,2.5],mx:2.5,o:[10,4,'start'],loc:'口角外侧 1.5–2 cm 水平',dep:'皮下 2–3 mm（很浅）',risk:'口角无力、不对称',mg:null},
+ {fx:645,fy:995,fo:[26,6,'start'],id:13,r:'mouth',need:1,mu:'降口角肌',n:'降口角肌',x:256,y:393,d:[1.25,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘上方约 1 cm、口角垂线外侧',dep:'3–5 mm',risk:'偏内 → 降下唇肌，下唇不对称；外侧有面动脉',mg:{r:'peri',need:1,d:[1.25,2.5,5],mx:5}},
+ {fx:562,fy:685,fo:[0,-30,'middle'],id:14,r:'lip',need:1,mu:'口轮匝肌',n:'上唇外侧',x:222,y:314,d:[1.25,1.25,1.25],mx:1.25,o:[0,-12,'middle'],loc:'上唇外 1/3，唇红缘上 3–5 mm',dep:'皮下 2 mm',risk:'流涎、吹气漏气',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
+ {fx:558,fy:838,fo:[0,34,'middle'],id:15,r:'lip',need:2,mu:'口轮匝肌',n:'下唇外侧',x:222,y:352,d:[1.25,1.25,1.25],mx:1.25,o:[0,15,'middle'],loc:'下唇外 1/3，唇红缘下 3–5 mm',dep:'皮下 2 mm',risk:'流涎、发音不清',mg:{r:'peri',need:2,d:[1.25,1.25,2.5],mx:2.5}},
+ {fx:530,fy:1005,fo:[0,-30,'middle'],id:16,r:'chin',need:1,mu:'颏肌',n:'颏肌',x:216,y:402,d:[2.5,2.5,5],mx:5,o:[0,-12,'middle'],loc:'中线旁 0.5–1 cm，颏突下 1/3',dep:'深注至骨膜上 6–10 mm',risk:'位置过高 → 口唇闭合不全、流涎',mg:{r:'peri',need:1,d:[2.5,2.5,5],mx:5}},
+ {fx:740,fy:1130,fo:[26,6,'start'],id:17,r:'neck',need:1,mu:'颈阔肌',n:'颈阔肌（上）',x:252,y:452,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'下颌缘下约 2 cm，收缩时出现的条索上',dep:'捏起后皮下浅注',risk:'深注 → 吞咽不适；颈外静脉',mg:{r:'neck',need:1,d:[2.5,2.5,5],mx:5}},
+ {fx:750,fy:1235,fo:[26,6,'start'],id:18,r:'neck',need:2,mu:'颈阔肌',n:'颈阔肌（下）',x:258,y:482,d:[2.5,2.5,3.75],mx:5,o:[10,4,'start'],loc:'同一条索下方 1.5–2 cm',dep:'捏起后皮下浅注',risk:'同上',mg:{r:'neck',need:2,d:[2.5,2.5,5],mx:5}}
+ ,{fx:485,fy:242,fo:[0,-32,'middle'],id:'M1',h:false,mid:1,mu:'降眉间肌',n:'降眉间肌（眉间中线）',x:200,y:170,o:[0,-13,'middle'],loc:'两眉头连线中点下方、鼻根上部，中线 1 点',dep:'3–5 mm（肌层）',risk:'弥散 → 上睑下垂（少见）',mg:{r:'glab',need:1,d:[2.5,2.5,5],mx:5}}
+ ,{fx:838,fy:785,fo:[28,6,'start'],id:'M2',h:false,mu:'咬肌',n:'咬肌',x:298,y:358,o:[11,4,'start'],loc:'咬紧牙时隆起处，下颌角上方的下 1/2 肌腹；避开后缘（腮腺覆盖）',dep:'10–20 mm（深达肌腹）',risk:'咀嚼无力；后缘误入腮腺 → 口干；前缘过浅 → 笑肌，微笑不对称',mg:{r:'close',need:1,d:[20,30,50],mx:50,pts:'每侧分 2–3 点；闭口型首选'}}
+ ,{fx:900,fy:225,fo:[0,-32,'middle'],id:'M3',h:false,mu:'颞肌',n:'颞肌',x:322,y:152,o:[11,4,'start'],loc:'颞窝内咬牙时隆起处，眶外缘后方 2–3 cm',dep:'至骨面后稍退针',risk:'颞浅动脉；局部疼痛',mg:{r:'close',need:2,d:[15,20,40],mx:40,pts:'每侧分 2–3 点；偏颌型注射同侧'}}
+ ,{fx:900,fy:465,fo:[0,36,'middle'],id:'M4',h:false,mu:'翼外肌',n:'翼外肌',x:316,y:262,o:[11,4,'start'],loc:'肌电图引导：口外经乙状切迹（颧弓下、髁突前）约 15° 向上进针，或口内入路',dep:'3.5–4 cm（深部，27G 肌电图针）',risk:'须引导定位；咀嚼无力、吞咽不适',mg:{r:'open',need:1,d:[10,15,20],mx:20,pts:'每侧 1 点（引导下）；偏颌型注射对侧'}}
+ ,{fx:525,fy:1180,fo:[28,6,'start'],id:'M5',h:false,mu:'二腹肌前腹',n:'二腹肌前腹',x:214,y:454,o:[-11,4,'end'],loc:'颏下，中线旁约 1 cm',dep:'1–1.5 cm',risk:'吞咽困难（剂量偏大或过深进入下颌舌骨肌、颏舌肌）',mg:{r:'open',need:2,d:[2.5,5,5],mx:5}}
+ ,{fx:815,fy:925,fo:[28,6,'start'],id:'M6',h:false,mu:'翼内肌',n:'翼内肌',x:284,y:380,o:[11,4,'start'],loc:'下颌角内侧，经下颌下缘向上进针，肌电图引导',dep:'2–3 cm',risk:'吞咽困难；须引导定位',mg:{r:'close',need:3,d:[10,15,20],mx:20,pts:'少用，仅在咬肌 / 颞肌效果不足时'}}
 ];
 const HS = [   // 健侧对称点：坐标同点 10 / 13，绘制在健侧（镜像）
- {id:'H1',hs:1,mu:'颧大肌',n:'健侧颧大肌',x:298,y:252,dose:1.25,o:[10,4,'start'],loc:'与患侧点 10 对称'},
- {id:'H2',hs:1,mu:'降口角肌',n:'健侧降口角肌',x:256,y:393,dose:1.25,o:[10,4,'start'],loc:'与患侧点 13 对称'}
+ {fx:798,fy:525,fo:[26,6,'start'],id:'H1',hs:1,mu:'颧大肌',n:'健侧颧大肌',x:298,y:252,dose:1.25,o:[10,4,'start'],loc:'与患侧点 10 对称'},
+ {fx:645,fy:995,fo:[26,6,'start'],id:'H2',hs:1,mu:'降口角肌',n:'健侧降口角肌',x:256,y:393,dose:1.25,o:[10,4,'start'],loc:'与患侧点 13 对称'}
 ];
 const R = [
  {k:'lid',n:'眼睑（睑板前）',e:'眨眼增多、眼睑抽动'},
@@ -864,7 +927,7 @@ const RM = [   // Meige 综合征：双侧对称，按部位选择
  {k:'neck',n:'颈阔肌',e:'颈前条索、口角下拉'}
 ];
 const DZ = {hfs:'面肌痉挛', meige:'Meige 综合征'};
-const st = { dz:'hfs', side:'L', stage:'first', conc:2.5, hs:false,
+const st = { dz:'hfs', side:'L', lm:true, zn:true, stage:'first', conc:2.5, hs:false,
   sev:{ L:{lid:2,orb:1,brow:0,cheek:0,mouth:0,lip:0,chin:0,neck:0},
         R:{lid:2,orb:1,brow:0,cheek:0,mouth:0,lip:0,chin:0,neck:0} },
   msev:{lid:2,orb:1,glab:1,peri:0,close:0,open:0,neck:0},
@@ -919,58 +982,62 @@ function compute(){
   return res;
 }
 
-// ===== 面部图 =====
-const mxs = (x,sd) => sd==='R' ? 400-x : x;
+// ===== 面部图（底图：Braus 1921 面部正面图；画布坐标 1000 × 1380，图像位于 20,140）=====
+// 点位坐标 fx/fy 按"患者左侧"（图右侧）给出；患者右侧镜像：x' = FX − x
+const FX = 970;
+const mxs = (x,sd) => sd==='R' ? FX-x : x;
 const flipS = (a,sd) => sd==='R' ? (a==='start'?'end':a==='end'?'start':a) : a;
-const MUSCLES = `
-<ellipse class="fc-ring" cx="255" cy="194" rx="45" ry="33" stroke-width="16"/>
-<path class="fc-m" d="M212 74 Q268 58 316 102 L306 148 Q262 136 216 144 Z"/>
-<path class="fc-ms" d="M206 154 Q226 144 250 149" stroke-width="6"/>
-<path class="fc-ms" d="M316 230 L240 326" stroke-width="11"/>
-<path class="fc-ms" d="M290 224 L231 300" stroke-width="6"/>
-<path class="fc-ms" d="M322 318 L240 330" stroke-width="6"/>
-<path class="fc-m" d="M238 337 L244 413 L276 404 Z"/>
-<ellipse class="fc-m" cx="216" cy="402" rx="11" ry="16"/>
-<path class="fc-m" d="M228 436 L266 428 L276 506 L236 506 Z"/>`;
-const MUSCLES_M = `
-<path class="fc-m" d="M302 118 Q330 118 336 168 L332 206 L310 190 Q300 150 302 118 Z"/>
-<path class="fc-m" d="M306 264 L332 272 L318 382 L288 372 Z"/>
-<ellipse class="fc-deep" cx="316" cy="262" rx="11" ry="7"/>
-<ellipse class="fc-m" cx="214" cy="452" rx="7" ry="12"/>
-<path class="fc-m" d="M194 158 L206 158 L208 184 L192 184 Z"/>`;
-const ZONES = `
-<ellipse class="zone" cx="256" cy="177" rx="8" ry="6"/>
-<ellipse class="zone" cx="221" cy="207" rx="8" ry="9"/>
-<path class="zone" d="M236 128 L292 132 L290 150 Q262 142 236 148 Z"/>
-<path class="zone" d="M208 228 L248 226 L244 288 L216 272 Z"/>`;
-const ZONE_FRONT = `<path class="zone" d="M212 74 Q268 58 316 102 L306 126 Q262 116 216 124 Z"/>`;
-const MLAB = [['额肌',262,90,'middle'],['颧大肌',340,272,'start'],['笑肌',336,320,'start'],['降口角肌',292,418,'start'],['颏肌',200,432,'middle'],['颈阔肌',284,500,'start']];
-const MLAB_M = [['颞肌',338,118,'start'],['咬肌',334,372,'start'],['翼外肌（深）',334,288,'start'],['二腹肌',200,488,'middle'],['颏肌',200,432,'middle'],['颈阔肌',284,500,'start']];
+const LMK = [
+ {t:'瞳孔中线', p:[[695,160],[695,1080]], lab:[700,1100,'start']},
+ {t:'外眦垂线', p:[[790,160],[790,1020]], lab:[795,1040,'start']},
+ {t:'眶缘', p:[[590,235],[660,215],[750,215],[830,240],[865,310],[840,390],[750,418],[650,412],[600,380]], lab:[870,372,'start']},
+ {t:'颧骨—颧弓', p:[[800,470],[860,460],[930,445]], lab:[795,468,'end']},
+ {t:'鼻唇沟', p:[[590,580],[630,650],[655,720],[668,790]], lab:[676,808,'start']},
+ {t:'口角垂线', p:[[610,745],[610,1065]], lab:[614,1084,'start']},
+ {t:'下颌缘', p:[[485,1075],[600,1065],[710,1020],[810,940],[875,840]], lab:[828,968,'start']},
+ {t:'咬肌前缘', p:[[815,580],[800,780],[785,980]], lab:[822,626,'start']},
+ {t:'腮腺导管线', p:[[935,490],[610,745]], lab:[688,672,'end']}
+];
+const MARK = [
+ {t:'面动脉', x:785, y:975, c:'a', lab:[798,1000,'start']},
+ {t:'颏孔', x:680, y:955, c:'n', lab:[692,950,'start']},
+ {t:'眶上切迹', x:660, y:214, c:'n'}
+];
+const ZONES = `<ellipse class="zone" cx="695" cy="272" rx="16" ry="12"/><ellipse class="zone" cx="605" cy="351" rx="18" ry="20"/><polygon class="zone" points="630,210 890,215 890,95 630,95"/><polygon class="zone" points="585,415 690,415 690,620 600,610"/>`;
+const ZONE_FRONT = `<polygon class="zone zf" points="505,22 905,42 905,212 510,218"/>`;
+const OUTLINE = `<path class="fo-ln" d="M62 190 C80 80 240 12 485 8 C730 12 890 80 912 200"/><path class="fo-ln" d="M150 1090 C160 1200 168 1300 172 1378 M818 1100 C806 1220 800 1300 798 1378"/>`;
 function faceSVG(opt){
   // opt: {res:{L:[],R:[]}} 显示本次方案；{all:true, hsShow:bool} 显示当前病种的全部候选点
-  let s = `<svg viewBox="0 0 400 510" role="img" aria-label="面部注射点位图（正面观）">`;
-  s += `<text class="fc-side" x="12" y="18">患者右侧</text><text class="fc-side" x="388" y="18" text-anchor="end">患者左侧</text>`;
-  s += `<path class="fc-skin" d="M130 380 L122 510 L278 510 L270 380 Z"/>`;
-  s += `<ellipse class="fc-skin" cx="64" cy="230" rx="13" ry="32"/><ellipse class="fc-skin" cx="336" cy="230" rx="13" ry="32"/>`;
-  s += `<path class="fc-skin" d="M200 40 C292 40 336 110 336 205 C336 280 318 340 290 384 C264 424 234 442 200 442 C166 442 136 424 110 384 C82 340 64 280 64 205 C64 110 108 40 200 40 Z"/>`;
-  s += `<path class="fc-ln" d="M110 162 Q145 146 182 156 M218 156 Q255 146 290 162"/>`;
-  for(const cx of [145,255]) s += `<path class="fc-eye" d="M${cx-30} 195 Q${cx} 167 ${cx+30} 195 Q${cx} 213 ${cx-30} 195 Z"/><circle class="fc-iris" cx="${cx}" cy="194" r="7"/>`;
-  s += `<path class="fc-ln" d="M196 200 L186 262 Q200 274 214 262 L204 200 M178 268 Q172 276 182 280 M222 268 Q228 276 218 280"/>`;
-  s += `<path class="fc-ln" d="M178 268 Q160 300 162 330 M222 268 Q240 300 238 330"/>`;
-  s += `<path class="fc-eye" d="M164 332 Q182 320 200 325 Q218 320 236 332 Q200 352 164 332 Z"/><path class="fc-ln" d="M164 332 Q200 336 236 332"/>`;
-  s += `<path class="fc-ln" d="M186 410 Q200 416 214 410"/>`;
   const aff = sidesOn(), M = isM();
+  let s = `<svg viewBox="0 0 1000 1380" role="img" aria-label="面部注射点位图（正面观，底图为解剖插图）" class="${st.lm?'':'nolm'} ${st.zn?'':'nozn'}">`;
+  s += `<rect x="0" y="0" width="1000" height="1380" fill="#fff"/>`;
+  s += `<image href="img/face_base.jpg" x="20" y="140" width="960" height="1120"/>`;
+  s += OUTLINE;
+  s += `<text class="fc-side" x="16" y="40">患者右侧</text><text class="fc-side" x="984" y="40" text-anchor="end">患者左侧</text>`;
+  // 禁注区
+  s += `<g class="zn">`;
   for(const sd of aff){
-    const g = sd==='R' ? ' transform="translate(400 0) scale(-1 1)"' : '';
-    s += `<g${g}>${MUSCLES}${M?MUSCLES_M+ZONE_FRONT:''}${ZONES}</g>`;
-    s += (M?MLAB_M:MLAB).map(([t,x,y,a])=>`<text class="fc-mn" x="${mxs(x,sd)}" y="${y}" text-anchor="${flipS(a,sd)}">${t}</text>`).join('');
+    const g = sd==='R' ? ` transform="translate(${FX} 0) scale(-1 1)"` : '';
+    s += `<g${g}>${ZONES}${M?ZONE_FRONT:''}</g>`;
   }
+  s += `</g>`;
+  // 体表标志
+  s += `<g class="lmk">`;
+  aff.forEach((sd,i)=>{
+    const g = sd==='R' ? ` transform="translate(${FX} 0) scale(-1 1)"` : '';
+    s += `<g${g}>` + LMK.map(l=>`<polyline class="lm-ln" points="${l.p.map(q=>q.join(',')).join(' ')}"/>`).join('')
+      + MARK.map(m=>`<circle class="mk-${m.c}" cx="${m.x}" cy="${m.y}" r="7"/>`).join('') + `</g>`;
+    if(i===0 || !M) s += LMK.concat(MARK.filter(m=>m.lab)).map(l=>{ const [x,y,a] = l.lab; return `<text class="lm-t${l.c==='a'?' a':''}" x="${mxs(x,sd)}" y="${y}" text-anchor="${flipS(a,sd)}">${l.t}</text>`; }).join('');
+  });
+  s += `</g>`;
   const pt = (p, sd, on, dose, hs) => {
-    const x = p.mid ? p.x : mxs(p.x, sd);
-    let t = `<g class="pt${hs?' hs':''}${on?' on':' dim'}"><circle cx="${x}" cy="${p.y}" r="${String(p.id).length>1&&isNaN(p.id)?9:7.5}"/><text x="${x}" y="${p.y}">${p.id}</text></g>`;
+    const x = p.mid ? p.fx : mxs(p.fx, sd);
+    const y = sd==='R' && p.fyR ? p.fyR : p.fy;
+    const lab = String(p.id);
+    let t = `<g class="pt${hs?' hs':''}${on?' on':' dim'}"><circle cx="${x}" cy="${y}" r="${lab.length>1?19:16}"/><text x="${x}" y="${y}">${lab}</text></g>`;
     if(dose && !opt.all){
-      const dx = sd==='R' && !p.mid ? -p.o[0] : p.o[0];
-      t += `<text class="pd${hs?' hs':''}" x="${x+dx}" y="${p.y+p.o[1]}" text-anchor="${p.mid?p.o[2]:flipS(p.o[2],sd)}" dominant-baseline="central">${fmt(dose)}</text>`;
+      const dx = sd==='R' && !p.mid ? -p.fo[0] : p.fo[0];
+      t += `<text class="pd${hs?' hs':''}" x="${x+dx}" y="${y+p.fo[1]}" text-anchor="${p.mid?p.fo[2]:flipS(p.fo[2],sd)}" dominant-baseline="central">${fmt(dose)}</text>`;
     }
     return t;
   };
@@ -1163,6 +1230,7 @@ document.getElementById('pat').addEventListener('change', e=>{
   renderAll();
 });
 document.addEventListener('change', e=>{ if(e.target.name && e.target.name.startsWith('dz-')) setDz(e.target.value); });
+for(const [id,k] of [['lmBtn','lm'],['znBtn','zn']]) document.getElementById(id).addEventListener('click', e=>{ st[k] = !st[k]; e.currentTarget.setAttribute('aria-pressed', st[k]); renderAll(); });
 </script>
 
 </body>
